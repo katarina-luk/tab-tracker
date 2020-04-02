@@ -4,14 +4,14 @@
       <div class="pa-4 ma-2">
     <div class="white elevation-2 d-flex flex-column mb-6">
       <v-toolbar  dense dark>
-        <v-toolbar-title >Register</v-toolbar-title>
+        <v-toolbar-title >Login</v-toolbar-title>
       </v-toolbar>
     <v-text-field v-model='email' label='Email'></v-text-field> <br>
     <v-text-field v-model='password' label='Password'></v-text-field>
     <br>
     <div class='error' v-html='error' />
     <br>
-    <v-btn class='cyan' @click='register'>Register</v-btn>
+    <v-btn class='cyan' @click='login'>Login</v-btn>
     </div>
     </div>
   </v-flex>
@@ -30,9 +30,9 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
       try {
-        await AuthenticationService.register({
+        await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
