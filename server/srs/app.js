@@ -9,10 +9,11 @@ const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
+app.use(bodyParser.urlencoded({ extended: false }))
 
 require('./routes')(app)
 
-sequelize.sync()
+sequelize.sync()// {force:true}
   .then(() => {
     app.listen(process.env.PORT || 8081)
     console.log(`Server started on port ${config.port}`)
