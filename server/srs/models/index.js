@@ -18,8 +18,16 @@ fs
   )
   .forEach((file) => {
     const model = sequelize.import(path.join(__dirname, file))
+    console.log("model " + model)
+    try{
     db[model.name] = model
-  })
+    console.log("working")
+    }catch(err){
+    console.error(err)
+    }
+    
+    })
+    
   
 db.sequelize = sequelize
 db.Sequelize = Sequelize
