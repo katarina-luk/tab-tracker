@@ -2,6 +2,7 @@ const {User} = require('../models')
 const jwt = require('jsonwebtoken')
 const config = require('../config/config')
 
+
 function jwtSignUser (user) {
   const ONE_WEEK = 60 * 60 * 24 * 7
   return jwt.sign(user, config.authentication.jwtSecret, {
@@ -24,7 +25,6 @@ module.exports = {
       })
     }
   },
-
   async login (req, res) {
     try {
       const {email, password} = req.body
@@ -40,7 +40,9 @@ module.exports = {
         })
       }
 
-      const isPasswordValid = password === user.password
+      const isPasswordValid =  function (password) {
+        return bcrypt.compareAsync(password, this.password) 
+      }     //user.comparePassword(password)//= password ===user.password//await user.comparePassword(password)
       if (!isPasswordValid) {
         return res.status(403).send({
           error: 'The login information was incorrect'
