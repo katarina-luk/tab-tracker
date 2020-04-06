@@ -1,11 +1,7 @@
 <template>
 <v-layout column>
-  <v-flex>
-      <div class="pa-4 ma-2">
-    <div class="white elevation-2 d-flex flex-column mb-6">
-      <v-toolbar  dense dark>
-        <v-toolbar-title >Register</v-toolbar-title>
-      </v-toolbar>
+  <v-flex xs6 offset-xs3>
+          <panel title='Register'>
       <form name="tab-tracker-form" autocomplete="off">
     <v-text-field v-model='email' label='Email'></v-text-field> <br>
     <v-text-field v-model='password' label='Password' type='password' autocomplete='new-password'></v-text-field>
@@ -14,8 +10,7 @@
     <div class='error' v-html='error' />
     <br>
     <v-btn class='cyan' @click='register'>Register</v-btn>
-    </div>
-    </div>
+     </panel>
   </v-flex>
 </v-layout>
 
@@ -23,6 +18,7 @@
 
 <script>
 import AuthenticationService from '@/services/AuthenticationServise'
+import Panel from '@/components/Panel'
 export default {
   data () {
     return {
@@ -44,6 +40,10 @@ export default {
         this.error = error.response.data.error
       }
     }
+  },
+  components: {
+    Panel
+
   }
 }
 </script>
