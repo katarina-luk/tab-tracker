@@ -4,6 +4,7 @@
     <div class="white elevation-2">
       <v-toolbar  dense dark >
         <v-toolbar-title >{{title}}</v-toolbar-title>
+        <slot name='action' />
       </v-toolbar>
       <br>
       <slot>No slot content defined.</slot>

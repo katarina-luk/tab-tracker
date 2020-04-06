@@ -48,4 +48,8 @@ export default {
    margin-left: 30%;
     margin-right: 30%;
 }
+.danger-alert{
+  color: red;
+  margin-bottom: 5px;
+}
 </style>
