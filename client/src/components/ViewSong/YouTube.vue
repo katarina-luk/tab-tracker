@@ -1,15 +1,16 @@
+
 <template>
-  <panel title="Youtube Video">
-      <youtube
+  <panel title="YouTube Video">
+    <youtube
       :video-id="youtubeId"
       :player-width="800"
       :player-height="330">
-      </youtube>
+    </youtube>
   </panel>
 </template>
 
 <script>
-import Panel from '@/components/Panel'
+import Panel from '@/components/globals/Panel'
 
 export default {
   props: [

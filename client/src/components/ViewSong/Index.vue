@@ -2,7 +2,7 @@
   <div>
     <v-layout>
       <v-flex xs6>
-        <song-metadata :song="song"/>
+        <song-metadata :song="song" />
       </v-flex>
 
       <v-flex xs6 class="ml-2">
@@ -10,16 +10,15 @@
       </v-flex>
     </v-layout>
 
-    <v-layout>
-      <v-flex xs6 class="mt-2">
- <tab :song="song"/>
+    <v-layout class="mt-2">
+      <v-flex xs6>
+        <tab :song="song" />
       </v-flex>
 
-      <v-flex xs6 class="ml-2 mt-2">
-         <lyrics :song="song"/>
+      <v-flex xs6 class="ml-2">
+        <lyrics :song="song" />
       </v-flex>
     </v-layout>
-
   </div>
 </template>
 
@@ -29,7 +28,7 @@ import Lyrics from '@/components/ViewSong/Lyrics'
 import SongMetadata from '@/components/ViewSong/SongMetadata'
 import YouTube from '@/components/ViewSong/YouTube'
 import SongService from '@/services/SongsService'
-import Panel from '@/components/Panel'
+import Panel from '@/components/globals/Panel'
 
 export default {
   data () {

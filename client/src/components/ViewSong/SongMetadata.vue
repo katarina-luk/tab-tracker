@@ -1,21 +1,28 @@
-<template>
-    <panel title="Song Metadata">
-      <v-layout>
-        <v-flex xs6>
-            <div class="song-title">
-            {{song.title}}
-            </div>
-            <div class="song-artist">
-            {{song.artist}}
-            </div>
-            <div class="song-genre">
-            {{song.genre}}
-            </div>
 
-            <v-btn
-              dark
-              class="cyan"
-              @click="navigateTo({name: 'song-edit', params: {songId: song.id}})">
+<template>
+  <panel title="Song Metadata">
+    <v-layout>
+      <v-flex xs6>
+        <div class="song-title">
+          {{song.title}}
+        </div>
+        <div class="song-artist">
+          {{song.artist}}
+        </div>
+        <div class="song-genre">
+          {{song.genre}}
+        </div>
+
+          <v-btn
+           dark
+           class="cyan"
+           :to="{name: 'song-edit',
+            params () {
+              return {
+                songId: song.id
+              }
+            }
+          }">
               Edit
             </v-btn>
 
@@ -30,16 +37,11 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel'
+import Panel from '@/components/globals/Panel'
 export default {
   props: [
     'song'
   ],
-  methods: {
-    navigateTo (route) {
-      this.$router.push(route)
-    }
-  },
   components: {
     Panel
   }

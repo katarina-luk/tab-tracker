@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import Panel from '@/components/Panel'
+import Panel from '@/components/globals/Panel'
 import SongService from '@/services/SongsService'
 export default {
   data () {

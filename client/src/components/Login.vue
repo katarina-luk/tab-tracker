@@ -5,7 +5,7 @@
     <v-text-field v-model='email' label='Email'></v-text-field> <br>
     <v-text-field v-model='password' label='Password' type='password'></v-text-field>
     <br>
-    <div class='error' v-html='error' />
+    <div class='danger-alert' v-html='error' />
     <br>
     <v-btn class='cyan' @click='login'>Login</v-btn>
           </panel>
@@ -16,7 +16,7 @@
 
 <script>
 import AuthenticationService from '@/services/AuthenticationServise'
-import Panel from '@/components/Panel'
+import Panel from '@/components/globals/Panel'
 
 export default {
   data () {
@@ -36,6 +36,9 @@ export default {
         })
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
+        this.$router.push({
+          name: 'songs'
+        })
       } catch (error) {
         this.error = error.response.data.error
       }
@@ -48,7 +51,4 @@ export default {
 </script>
 
 <style scoped>
-.error {
-  color: red;
- }
 </style>
