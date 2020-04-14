@@ -26,7 +26,22 @@
               Edit
             </v-btn>
 
-        </v-flex>
+        <v-btn
+          v-if="isUserLoggedIn && !bookmark"
+          dark
+          class="cyan"
+          @click="setAsBookmark">
+          Set As Bookmark
+        </v-btn>
+
+        <v-btn
+          v-if="isUserLoggedIn && bookmark"
+          dark
+          class="cyan"
+          @click="unsetAsBookmark">
+          Unset As Bookmark
+        </v-btn>
+      </v-flex>
 
         <v-flex xs6>
             <img class="album-image" :src="song.albumImageUrl" /><br>
@@ -37,51 +52,80 @@
 </template>
 
 <script>
-import Panel from '@/components/globals/Panel'
+import {mapState} from 'vuex'
+import BookmarksService from '@/services/BookmarksService'
 export default {
   props: [
     'song'
   ],
-  components: {
-    Panel
+  data () {
+    return {
+      bookmark: null
+    }
+  },
+  computed: {
+    ...mapState([
+      'isUserLoggedIn',
+      'user'
+    ])
+  },
+  watch: {
+    async song () {
+      if (!this.isUserLoggedIn) {
+        return
+      }
+      try {
+        const bookmarks = (await BookmarksService.index({
+          songId: this.song.id
+        })).data
+        if (bookmarks.length) {
+          this.bookmark = bookmarks[0]
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  },
+  methods: {
+    async setAsBookmark () {
+      try {
+        this.bookmark = (await BookmarksService.post({
+          songId: this.song.id,
+          userId: this.user.id
+        })).data
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    async unsetAsBookmark () {
+      try {
+        await BookmarksService.delete(this.bookmark.id)
+        this.bookmark = null
+      } catch (err) {
+        console.log(err)
+      }
+    }
   }
 }
 </script>
 
 <style scoped>
-.layout.column>.flex {
-    margin-left: 0;
-    margin-right: 0%;
-}
-.song{
+.song {
   padding: 20px;
   height: 330px;
   overflow: hidden;
 }
-
-.song-title{
+.song-title {
   font-size: 30px;
-
 }
-.song-artist{
+.song-artist {
   font-size: 24px;
-
 }
-.song-genre{
+.song-genre {
   font-size: 18px;
 }
-.album-image{
+.album-image {
   width: 70%;
   margin: 0 auto;
-}
-textarea {
-  width: 100%;
- font-family: monospace;
- border: none;
- height: 600px;
- border-style: none;
- border-color: transparent;
- overflow: auto;
- padding: 40px;
 }
 </style>

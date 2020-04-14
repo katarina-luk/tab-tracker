@@ -36,8 +36,12 @@ module.exports = {
       async show (req, res) {
         try {
          // const song = await Song.findById(req.params.songId)
-        const song = await Song.findOne({id:req.params.songId})
-        //const song = await Song.findAll({where: {id:req.params.songId}})
+         const song = await Song.findOne({
+          where: {
+            id: req.params.songId
+          }
+      })//findOne({id:req.params.songId})
+       // const song = await Song.findAll({where: {id:req.params.songId}})
         //const obj = JSON.stringify(song)
         //const obj =  Object.assign({}, song)
           res.send(song)
