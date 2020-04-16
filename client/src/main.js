@@ -9,6 +9,13 @@ import 'vuetify/dist/vuetify.min.css'
 import store from '@/store/store'
 import VueYouTubeEmbed from 'vue-youtube-embed'
 import Panel from '@/components/globals/Panel'
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
 Vue.config.productionTip = false
 
 Vue.use(Vuetify)
@@ -21,8 +28,13 @@ sync(store, router)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  Vuetify,
   router,
   store,
   components: { App },
   template: '<App/>'
 })
+
+const opts = {}
+
+export default new Vuetify(opts)

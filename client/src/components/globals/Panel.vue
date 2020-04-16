@@ -31,7 +31,6 @@ element.style {
     margin-right: 0;
     margin-left: 0;
     padding: 0;
-    width: 100%;
 }
 .layout.column>.flex {
     margin-left: 0;

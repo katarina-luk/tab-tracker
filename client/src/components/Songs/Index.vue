@@ -1,10 +1,10 @@
 <template>
-<v-layout column>
-  <v-flex xs6 offset-xs3>
+  <v-layout>
+   <v-flex xs6>
     <songs-search-panel />
     <songs-panel />
-  </v-flex>
-</v-layout>
+   </v-flex>
+  </v-layout>
 </template>
 
 <script>
