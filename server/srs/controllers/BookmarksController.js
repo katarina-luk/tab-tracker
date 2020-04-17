@@ -1,5 +1,6 @@
 const {Bookmark} = require('../models')
 
+
 module.exports = {
  
   async index (req, res) {
@@ -54,25 +55,30 @@ async post (req, res) {
 
       async delete (req, res) {
         try {
-          //const userId = req.user.id
-          //const {bookmarkId} = req.params.bookmarkId
-          const bookmark = await Bookmark.findOne({
-            where: {
-              id: req.params.bookmarkId//,
-              //userId: req.user.id
+          const { bookmarkId } = req.params
+          
+             const bookmark = await Bookmark.findByPk(bookmarkId) 
+            /* const bookmark = await Bookmark.findOne({
+              where: {
+                id: bookmarkId
+              }
+            }) */
+          
+            if (!bookmark) {
+              return res.status(403).send({
+                error: 'you do not have access to this bookmark'
+              })
             }
-          })
-          if (!bookmark) {
-            return res.status(403).send({
-              error: 'you do not have access to this bookmark'
+          
+            await bookmark.destroy()
+            res.send(bookmark)
+          } catch (err) {
+            res.status(500).send({
+              error: 'Error deleting all the songs'
             })
           }
-          await bookmark.destroy()
-          res.send({message:'Successful deleting'}, bookmark)
-        } catch (err) {
-          res.status(500).send({
-            error: 'an error has occured trying to delete the bookmark'
-          })
-        }
-      }
+          
+          }
+          
+          
     }
