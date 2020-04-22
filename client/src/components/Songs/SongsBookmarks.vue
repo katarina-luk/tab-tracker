@@ -1,6 +1,5 @@
 <template>
     <panel title="Bookmarks">
-
 <template>
   <div>
     <b-table  :fields="fields" :items="bookmarks"  id="my-table" :per-page="perPage"
