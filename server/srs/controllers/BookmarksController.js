@@ -5,7 +5,7 @@ const _ = require('lodash')
 module.exports = {
   async index (req, res) {
     try {
-      //const {userId} = req.body
+      //const userId = req.user.id
       //const {songId} = req.query
       /*const where = {
         UserId: userId
@@ -20,6 +20,7 @@ module.exports = {
           bookmark.Song,
           bookmark
           ))
+  
       res.send(bookmarks)
     } catch (err) {
       res.status(500).send({
@@ -31,7 +32,8 @@ module.exports = {
 
 async post (req, res) {
   try {
-    const {userId} = req.body
+    const userId = req.user.id
+    //const {userId} = req.body
     const {songId} = req.body
     const bookmark = await Bookmark.findOne({
       where: {
@@ -59,14 +61,16 @@ async post (req, res) {
 
       async delete (req, res) {
         try {
+          const userId = req.user.id
           const { bookmarkId } = req.params
           
-             const bookmark = await Bookmark.findByPk(bookmarkId) 
-            /* const bookmark = await Bookmark.findOne({
+            // const bookmark = await Bookmark.findByPk(bookmarkId) 
+             const bookmark = await Bookmark.findOne({
               where: {
-                id: bookmarkId
+                id: bookmarkId,
+                UserId: userId
               }
-            }) */
+            }) 
           
             if (!bookmark) {
               return res.status(403).send({
