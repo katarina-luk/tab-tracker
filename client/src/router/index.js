@@ -6,6 +6,7 @@ import Songs from '@/components/Songs/Index'
 import ViewSong from '@/components/ViewSong/Index'
 import CreateSong from '@/components/CreateSong'
 import EditSong from '@/components/EditSong'
+import HelloPage from '@/components/HelloPage'
 
 Vue.use(Router)
 
@@ -42,9 +43,23 @@ export default new Router({
       component: EditSong
     },
     {
+      path: '/',
+      name: 'hello',
+      component: HelloPage
+    },
+    {
       path: '*',
       redirect: 'songs'
     }
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    if (from.hash) {
+      return {selector: from.hash}
+    }
+    return {
+      x: 0,
+      y: 0
+    }
+  }
 
-  ]
 })

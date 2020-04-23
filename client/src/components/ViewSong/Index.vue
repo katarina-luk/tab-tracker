@@ -1,5 +1,6 @@
 <template>
   <div>
+    <my-header />
     <v-layout>
       <v-flex xs6>
         <song-metadata :song="song" />
@@ -19,6 +20,7 @@
         <lyrics :song="song" />
       </v-flex>
     </v-layout>
+      <my-footer/>
   </div>
 </template>
 
@@ -28,6 +30,8 @@ import Lyrics from '@/components/ViewSong/Lyrics'
 import SongMetadata from '@/components/ViewSong/SongMetadata'
 import YouTube from '@/components/ViewSong/YouTube'
 import SongService from '@/services/SongsService'
+import MyHeader from '@/components/Header'
+import MyFooter from '@/components/Footer'
 import Panel from '@/components/globals/Panel'
 
 export default {
@@ -46,7 +50,9 @@ export default {
     SongMetadata,
     YouTube,
     Lyrics,
-    Tab
+    Tab,
+    MyHeader,
+    MyFooter
   }
 }
 </script>

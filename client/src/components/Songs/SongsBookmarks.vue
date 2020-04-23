@@ -1,9 +1,10 @@
 <template>
-    <panel title="Bookmarks">
-<template>
   <div>
-    <b-table  :fields="fields" :items="bookmarks"  id="my-table" :per-page="perPage"
-      :current-page="currentPage">
+    <panel title="Bookmarks">
+      <template>
+         <div>
+         <b-table  :fields="fields" :items="bookmarks"  id="my-table" :per-page="perPage"
+         :current-page="currentPage">
       <template v-slot:items="props">
         {{ props.item.title }}
       </template>
@@ -18,15 +19,17 @@
       aria-controls="my-table"
       align="center"
     ></b-pagination>
+        </div>
+      </template>
+    </panel>
   </div>
-</template>
-
-</panel>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import BookmarksService from '@/services/BookmarksService'
+import MyHeader from '@/components/Header'
+import MyFooter from '@/components/Footer'
 export default {
   data () {
     return {
@@ -39,6 +42,10 @@ export default {
         { title: 'Song', artist: 'Shirley' } */
       ]
     }
+  },
+  components: {
+    MyHeader,
+    MyFooter
   },
   computed: {
     ...mapState([

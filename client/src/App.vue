@@ -1,20 +1,29 @@
 <template>
   <div id='app'>
-    <PageHeader />
-    <!--<img src="./assets/logo.png">-->
+   <!-- <PageHeader />
+    <img src="./assets/logo.png">-->
     <router-view></router-view>
+     <!-- PageFooter/ -->
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import PageHeader from '@/components/Header.vue'
-
+import PageFooter from '@/components/Footer.vue'
 export default {
   name: 'App',
   components: {
-    PageHeader
+    PageHeader,
+    PageFooter
+  },
+  computed: {
+    ...mapState([
+      'isUserLoggedIn'
+    ])
   }
 }
+
 </script>
 
 <style>
@@ -25,6 +34,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 0px;
+  margin: 0%;
+  padding: 0%;
+  width: 100%;
+  height: 100%;
 
 }
 
@@ -52,4 +65,5 @@ export default {
   color: red;
   margin-bottom: 5px;
 }
+
 </style>

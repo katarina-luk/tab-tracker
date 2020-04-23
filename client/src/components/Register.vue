@@ -1,4 +1,6 @@
 <template>
+<div>
+  <my-header />
 <v-layout column>
   <v-flex xs6 offset-xs3>
           <panel title='Register'>
@@ -9,16 +11,18 @@
     <br>
     <div class='danger-alert' v-html='error' />
     <br>
-    <v-btn class='cyan' @click='register'>Register</v-btn>
+    <v-btn class='cyan mb-5' @click='register'>Register</v-btn>
      </panel>
   </v-flex>
 </v-layout>
-
+</div>
 </template>
 
 <script>
 import AuthenticationService from '@/services/AuthenticationServise'
 import Panel from '@/components/globals/Panel'
+import MyHeader from '@/components/Header'
+import MyFooter from '@/components/Footer'
 export default {
   data () {
     return {
@@ -45,7 +49,9 @@ export default {
     }
   },
   components: {
-    Panel
+    Panel,
+    MyHeader,
+    MyFooter
 
   }
 }

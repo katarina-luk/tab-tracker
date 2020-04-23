@@ -1,4 +1,6 @@
 <template>
+<div>
+<my-header />
   <v-layout>
     <v-flex xs6 v-if="isUserLoggedIn">
       <songs-bookmarks />
@@ -12,6 +14,8 @@
     <songs-panel />
    </v-flex>
   </v-layout>
+  <my-footer/>
+</div>
 </template>
 
 <script>
@@ -21,12 +25,17 @@ import SongsSearchPanel from '@/components/Songs/SongsSearchPanel'
 import SongsService from '@/services/SongsService'
 import Panel from '@/components/globals/Panel'
 import SongsBookmarks from '@/components/Songs/SongsBookmarks'
+import MyHeader from '@/components/Header'
+import MyFooter from '@/components/Footer'
 export default {
   components: {
     Panel,
     SongsPanel,
     SongsSearchPanel,
-    SongsBookmarks
+    SongsBookmarks,
+    MyHeader,
+    MyFooter
+
   },
   data () {
     return {

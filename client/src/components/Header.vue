@@ -1,7 +1,7 @@
 <template>
 <v-layout>
-
       <v-toolbar flat dense fixed class="green" width='100%' dark>
+
          <v-toolbar-title class='mr-2'>
              <router-link
              class="home"
@@ -16,6 +16,14 @@
               dark
               :to="{name:'songs'}">
               Browse
+            </v-btn>
+        </v-toolbar-items>
+         <v-toolbar-items>
+             <v-btn
+              flat
+              dark
+              id="scroll">
+              Home
             </v-btn>
         </v-toolbar-items>
            <v-spacer></v-spacer>
@@ -62,11 +70,22 @@ export default {
 </script>
 
 <style scoped>
+h1{
+  color: red;
+}
 .home{
     cursor: pointer;
 }
 .home:hover{
     color: turquoise;
 }
+.scroll {
+  width: 100px;
+  height: 2250px;
+  background: #cccccc;
+}
 
+h4 > .scroll {
+  color: red;
+}
 </style>

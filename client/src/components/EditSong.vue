@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
 <template>
+<div>
+  <my-header />
   <v-layout>
     <v-flex xs4>
       <panel title="Song Metadata">
@@ -78,11 +80,16 @@
       </v-btn>
     </v-flex>
   </v-layout>
+    <my-footer/>
+
+</div>
 </template>
 
 <script>
 import Panel from '@/components/globals/Panel'
 import SongService from '@/services/SongsService'
+import MyHeader from '@/components/Header'
+import MyFooter from '@/components/Footer'
 export default {
   data () {
     return {
@@ -134,7 +141,10 @@ export default {
     }
   },
   components: {
-    Panel
+    Panel,
+    MyHeader,
+    MyFooter
+
   }
 }
 </script>
