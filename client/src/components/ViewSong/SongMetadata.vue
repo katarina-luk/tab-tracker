@@ -41,6 +41,13 @@
           @click="unsetAsBookmark">
           Unset As Bookmark
         </v-btn>
+         <v-btn
+          v-if="song"
+          dark
+          class="cyan"
+          @click="deleteSong">
+          Delete
+          </v-btn>
       </v-flex>
 
         <v-flex xs6>
@@ -54,6 +61,7 @@
 <script>
 import {mapState} from 'vuex'
 import BookmarksService from '@/services/BookmarksService'
+import SongsService from '@/services/SongsService'
 export default {
   props: [
     'song'
@@ -102,6 +110,15 @@ export default {
       try {
         await BookmarksService.delete(this.bookmark.id)
         this.bookmark = null
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    async deleteSong () {
+      try {
+        // const songId = this.$store.state.route.params.id
+        await SongsService.delete(this.song.id)
+        this.song = null
       } catch (err) {
         console.log(err)
       }

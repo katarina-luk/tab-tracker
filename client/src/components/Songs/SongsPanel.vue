@@ -53,9 +53,11 @@ export default {
   },
   data () {
     return {
-      songs: null
+      songs: null,
+      song: null
     }
   },
+
   watch: {
     '$route.query.search': {
       immediate: true,
@@ -64,12 +66,31 @@ export default {
       }
     }
   }
-  /*,
+}/*,
+  methods: {
+    async deleteSong () {
+      try {
+        const songId = this.$store.state.route.params.id
+        await SongsService.delete(songId)
+        this.songId = null
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
+}
+,
   async mounted () {
     this.songs = (await SongsService.index()).data
-  } */
+  }
+  async mounted () {
+    const songId = this.$store.state.route.params.songId
+    this.song = await SongService.delete(songId)
+    this.song=null
+    // console.log(this.song)
+  }
+  */
 
-}
 </script>
 
 <style scoped>

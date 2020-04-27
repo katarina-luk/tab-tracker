@@ -20,6 +20,8 @@ module.exports = (app) => {
     SongsController.put)
   app.post('/songs',
     SongsController.post)
+  app.delete('/songs/:songId',
+    SongsController.delete)
 
   app.get('/bookmarks',
     isAuthenticated,

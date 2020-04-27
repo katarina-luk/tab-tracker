@@ -1,20 +1,25 @@
 <template>
 <div>
 <my-header />
-  <v-layout>
-    <v-flex xs6 v-if="isUserLoggedIn">
+ <b-container class="bv-example-row">
+    <b-row class="justify-content-md-center">
+       <b-col col md="15" v-if="isUserLoggedIn">
       <songs-bookmarks />
-    </v-flex>
+       </b-col>
+    </b-row>
 
-   <v-flex :class="{
+ <b-row class="justify-content-md-center">
+   <b-row :class="{
      xs12: !isUserLoggedIn,
        xs6: isUserLoggedIn
      }">
-    <songs-search-panel />
-    <songs-panel />
-   </v-flex>
-  </v-layout>
-  <my-footer/>
+ <b-row class="justify-content-md-center" > <b-col col lg="10">  <songs-search-panel /></b-col></b-row>
+ <b-row class="justify-content-md-center"><b-col cols="10" md="auto">   <songs-panel /></b-col></b-row>
+   </b-row>
+ </b-row>
+
+ </b-container>
+ <my-footer />
 </div>
 </template>
 

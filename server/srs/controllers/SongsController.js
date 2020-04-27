@@ -74,5 +74,17 @@ module.exports = {
             error: 'an error has occured trying to create the song'
           })
         }
+      },
+
+      async delete (req,res) {
+        try {
+          const {songId} = req.params
+          const song = await Song.findOne({where:{id:songId}})
+          await song.destroy()
+          res.send(song)
+        } catch (err) {
+      res.status(500).send({
+  error: 'Error of deleting'
+})        }
       }
     }

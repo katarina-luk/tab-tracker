@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
-import VueI18n from 'vue-i18n'
+import FlagIcon from 'vue-flag-icon'
 import {sync} from 'vuex-router-sync'
 import '@fortawesome/fontawesome-free/css/all.css'
 import 'vuetify/dist/vuetify.min.css'
@@ -20,9 +20,10 @@ import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+Vue.use(FlagIcon)
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
-Vue.use(VueI18n)
+
 Vue.config.productionTip = false
 
 Vue.use(Vuetify)

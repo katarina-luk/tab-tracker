@@ -1,9 +1,17 @@
 <template>
 <div>
-  <my-header />
-<v-layout column>
-  <v-flex xs6 offset-xs3>
-          <panel title='Register'>
+     <my-header />
+ <b-container fluid >
+   <b-row class="justify-content-md-center">
+     <b-col cols="12" md="auto">
+   <b-card
+    title="Sing Up"
+    img-src= "https://i.pinimg.com/originals/c5/71/54/c5715484a6bcc1b2bb46b2c4334dbca5.gif"
+    img-alt="Image"
+    img-top
+    tag="article"
+    style="max-width: 25rem;"
+    class="mb-2 vega">
       <form name="tab-tracker-form" autocomplete="off">
     <v-text-field v-model='email' label='Email'></v-text-field> <br>
     <v-text-field v-model='password' label='Password' type='password' autocomplete='new-password'></v-text-field>
@@ -12,9 +20,10 @@
     <div class='danger-alert' v-html='error' />
     <br>
     <v-btn class='cyan mb-5' @click='register'>Register</v-btn>
-     </panel>
-  </v-flex>
-</v-layout>
+   </b-card>
+     </b-col>
+   </b-row>
+    </b-container>
 </div>
 </template>
 
@@ -58,4 +67,11 @@ export default {
 </script>
 
 <style scoped>
+
+@media (max-width: 400px) {
+    .vega {
+    height: 40px;
+    background-color: green;
+  }
+}
 </style>

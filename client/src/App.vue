@@ -8,20 +8,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import PageHeader from '@/components/Header.vue'
-import PageFooter from '@/components/Footer.vue'
 export default {
-  name: 'App',
-  components: {
-    PageHeader,
-    PageFooter
-  },
-  computed: {
-    ...mapState([
-      'isUserLoggedIn'
-    ])
-  }
+  name: 'App'
 }
 
 </script>
@@ -32,13 +20,9 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 0px;
-  margin: 0%;
-  padding: 0%;
   width: 100%;
   height: 100%;
-
+  color: #2c3e50;
 }
 
  .input-group--text-field input{
