@@ -9,10 +9,6 @@
         id="my-table"
         :per-page="perPage"
          :current-page="currentPage">
-
-      <template v-slot:items="props">
-        {{ props.item.id }}
-      </template>
       <template v-slot:items="props">
         {{ props.item.title }}
       </template>
@@ -43,7 +39,7 @@ export default {
     return {
       perPage: 3,
       currentPage: 1,
-      fields: ['id', 'title', 'artist'],
+      fields: ['title', 'artist'],
       histories: []
     }
   },
