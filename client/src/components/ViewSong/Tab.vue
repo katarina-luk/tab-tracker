@@ -1,9 +1,19 @@
 <template>
     <panel title="Tab">
-     <textarea
-     readonly
-     v-model="song.tab"
-     ></textarea>
+    <b-container fluid>
+  <b-row>
+    <b-col sm="10">
+      <b-form-textarea
+       id="textarea-plaintext"
+        rows="3"
+        max-rows="100"
+        readonly
+        v-model="song.tab"
+        class="textareaa"
+ ></b-form-textarea>
+    </b-col>
+  </b-row>
+</b-container>
     </panel>
 </template>
 
@@ -24,8 +34,13 @@ export default {
     margin-left: 0;
     margin-right: 0%;
 }
-
-textarea {
+.col-sm-10 {
+    -ms-flex: 0 0 100%;
+    -webkit-box-flex: 0;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.textareaa {
   width: 100%;
  font-family: monospace;
  border: none;

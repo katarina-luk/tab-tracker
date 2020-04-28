@@ -15,7 +15,7 @@
 
           <v-btn
            dark
-           class="cyan"
+           class="cyan mb-2"
            :to="{name: 'song-edit',
             params () {
               return {
@@ -45,8 +45,9 @@
          <v-btn
           v-if="song"
           dark
-          class="cyan"
-          @click="deleteSong">
+          class="cyan mt-2"
+          @click="deleteSong"
+          >
           Delete
           </v-btn>
       </v-flex>

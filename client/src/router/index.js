@@ -7,7 +7,6 @@ import ViewSong from '@/components/ViewSong/Index'
 import CreateSong from '@/components/CreateSong'
 import EditSong from '@/components/EditSong'
 import HelloPage from '@/components/HelloPage'
-import Carousel from '@/components/ViewSong/Carousel.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -50,11 +49,6 @@ export default new Router({
     {
       path: '*',
       redirect: 'songs'
-    },
-    {
-      path: '/carousel',
-      name: 'carousel',
-      component: Carousel
     }
   ],
   scrollBehavior (to, from, savedPosition) {

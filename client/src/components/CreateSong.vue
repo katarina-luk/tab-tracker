@@ -3,7 +3,7 @@
 <my-header />
   <b-container>
    <b-row class="justify-content-lg-center">
-     <b-col col lg="8"><panel title="Song Metadata">
+     <b-col cols="20" md="auto"><panel title="Song Metadata">
         <v-text-field
           label="Title"
           required
@@ -46,7 +46,7 @@
           v-model="song.youtubeId"
         ></v-text-field>
       </panel></b-col>
-     <b-col cols="12" md="auto">  <panel title="Song Structure" class="ml-2">
+     <b-col col lg="6" >  <panel title="Song Structure" class="ml-2">
         <v-text-field
           label="Tab"
           multi-line

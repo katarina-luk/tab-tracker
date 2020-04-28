@@ -2,9 +2,9 @@
 <template>
 <div>
   <my-header />
-  <v-layout>
-    <v-flex xs4>
-      <panel title="Song Metadata">
+<b-container>
+   <b-row class="justify-content-lg-center">
+     <b-col cols="20" md="auto"><panel title="Song Metadata">
         <v-text-field
           label="Title"
           required
@@ -46,11 +46,9 @@
           :rules="[required]"
           v-model="song.youtubeId"
         ></v-text-field>
-      </panel>
-    </v-flex>
+   </panel></b-col>
 
-    <v-flex xs8>
-      <panel title="Song Structure" class="ml-2">
+   <b-col col lg="6" >  <panel title="Song Structure" class="ml-2">
         <v-text-field
           label="Tab"
           multi-line
@@ -66,8 +64,6 @@
           :rules="[required]"
           v-model="song.lyrics"
         ></v-text-field>
-      </panel>
-
       <div class="danger-alert" v-if="error">
         {{error}}
       </div>
@@ -79,10 +75,11 @@
         >
         Save Song
       </v-btn>
-    </v-flex>
-  </v-layout>
+      </panel>
+    </b-col>
+</b-row>
+  </b-container>
     <my-footer/>
-
 </div>
 </template>
 

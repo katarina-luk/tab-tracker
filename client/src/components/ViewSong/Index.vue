@@ -9,12 +9,13 @@
  <b-col  col lg="6">
         <you-tube :youtubeId="song.youtubeId" />
        </b-col>
-         </b-row>
-  <b-row >
- <b-col col lg="6">
+  </b-row>
+    <b-row class="justify-content-md-center">
+
+ <b-col col lg="12">
            <tab :song="song" />
  </b-col>
- <b-col col lg="6">
+ <b-col col md="12">
         <lyrics :song="song" />
  </b-col>
    </b-row>
