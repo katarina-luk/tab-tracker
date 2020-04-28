@@ -120,6 +120,12 @@ export default {
       }
       try {
         await SongService.post(this.song)
+        this.$swal({
+          icon: 'success',
+          title: 'Song was creating',
+          timer: 1500,
+          showConfirmButton: false
+        })
         this.$router.push({
           name: 'songs'
         })

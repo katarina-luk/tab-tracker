@@ -5,15 +5,16 @@ const _ = require('lodash')
 module.exports = {
   async index (req, res) {
     try {
-      //const userId = req.user.id
-      //const {songId} = req.query
-      /*const where = {
+      const userId = req.user.id
+      const {songId} = req.query
+      //const {userId} = req.query
+      const where = {
         UserId: userId
       }
       if (songId) {
         where.SongId = songId
-      }*/
-      const bookmarks = await Bookmark.findAll({include:[{model:Song}]})
+      }
+      const bookmarks = await Bookmark.findAll({where:where,include:[{model:Song}]})
         .map(bookmark => bookmark.toJSON())
         .map(bookmark => _.extend(
           {},

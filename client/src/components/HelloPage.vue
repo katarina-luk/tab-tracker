@@ -21,6 +21,7 @@
             :to="{name:'songs'}">
               Continue as a guest
             </v-btn>
+            <v-spacer></v-spacer>
              <v-btn
              flat
              dark
@@ -100,7 +101,7 @@ body, html {
 
    .bg {
     /* The image used */
-    background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fgifer.com%2Fru%2Fg1S1&psig=AOvVaw28aSmxoNrKTSfaJtUGMz_J&ust=1588099335976000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJjY5J2hiekCFQAAAAAdAAAAABAJ");
+    background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg");
 
     /* Full height */
     height: 100%;

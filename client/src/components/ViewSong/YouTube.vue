@@ -3,7 +3,7 @@
   <panel title="YouTube Video">
     <youtube
       :video-id="youtubeId"
-      :player-width="800"
+      :player-width="450"
       :player-height="330">
     </youtube>
   </panel>
@@ -24,5 +24,6 @@ export default {
 </script>
 
 <style scoped>
-
+@media (max-width: 400px) {
+}
 </style>

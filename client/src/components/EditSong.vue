@@ -75,7 +75,8 @@
       <v-btn
         dark
         class="cyan"
-        @click="save">
+        @click="save"
+        >
         Save Song
       </v-btn>
     </v-flex>
@@ -121,6 +122,12 @@ export default {
       const songId = this.$store.state.route.params.songId
       try {
         await SongService.put(this.song)
+        this.$swal({
+          icon: 'success',
+          title: 'Changes have been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
         this.$router.push({
           name: 'song',
           params: {

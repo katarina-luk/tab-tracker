@@ -5,6 +5,7 @@
   <b-row class="justify-content-md-center">
      <b-col cols="12" md="auto">
    <b-card
+   bg-variant="light"
     title="Login"
     img-src= "https://i.pinimg.com/originals/c5/71/54/c5715484a6bcc1b2bb46b2c4334dbca5.gif"
     img-alt="Image"

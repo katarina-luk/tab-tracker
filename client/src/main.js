@@ -8,6 +8,8 @@ import FlagIcon from 'vue-flag-icon'
 import {sync} from 'vuex-router-sync'
 import '@fortawesome/fontawesome-free/css/all.css'
 import 'vuetify/dist/vuetify.min.css'
+import VueSweetalert2 from 'vue-sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css'
 import store from '@/store/store'
 // import HelloPage from '@/components/HelloPage'
 import '@mdi/font/css/materialdesignicons.css'
@@ -20,6 +22,7 @@ import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+Vue.use(VueSweetalert2)
 Vue.use(FlagIcon)
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)

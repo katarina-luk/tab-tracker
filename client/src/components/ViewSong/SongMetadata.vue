@@ -41,6 +41,7 @@
           @click="unsetAsBookmark">
           Unset As Bookmark
         </v-btn>
+        <v-spacer></v-spacer>
          <v-btn
           v-if="song"
           dark
@@ -83,13 +84,12 @@ export default {
         return
       }
       try {
-        this.bookmarks = (await BookmarksService.index({
-          songId: this.song.id// ,
-          // userId: this.user.id
+        const bookmarks = (await BookmarksService.index({
+          songId: this.song.id
         })).data
-        /* if (bookmarks.length) {
+        if (bookmarks.length) {
           this.bookmark = bookmarks[0]
-        } */
+        }
       } catch (err) {
         console.log(err)
       }
@@ -102,7 +102,18 @@ export default {
           songId: this.song.id// ,
           // userId: this.user.id
         })).data
+        this.$swal({
+          icon: 'success',
+          title: 'Bookmark is setting',
+          showConfirmButton: false,
+          timer: 1500
+        })
       } catch (err) {
+        this.$swal({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!'
+        })
         console.log(err)
       }
     },
@@ -110,8 +121,20 @@ export default {
       try {
         await BookmarksService.delete(this.bookmark.id)
         this.bookmark = null
+        this.$swal({
+          icon: 'success',
+          title: 'Bookmark is unsetting',
+          showConfirmButton: false,
+          timer: 1500
+        })
       } catch (err) {
         console.log(err)
+        this.$swal({
+          icon: 'success',
+          title: 'Bookmark is unsetting',
+          showConfirmButton: false,
+          footer: 'You has already set the bookmark'
+        })
       }
     },
     async deleteSong () {
@@ -119,7 +142,21 @@ export default {
         // const songId = this.$store.state.route.params.id
         await SongsService.delete(this.song.id)
         this.song = null
+        this.$swal({
+          icon: 'success',
+          title: 'Song is deleted',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.$router.push({
+          name: 'songs'
+        })
       } catch (err) {
+        this.$swal({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!'
+        })
         console.log(err)
       }
     }

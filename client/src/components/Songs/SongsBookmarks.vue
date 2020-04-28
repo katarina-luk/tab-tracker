@@ -5,6 +5,9 @@
          <div>
          <b-table  :fields="fields" :items="bookmarks"  id="my-table" :per-page="perPage"
          :current-page="currentPage">
+          <template v-slot:items="props">
+        {{ props.item.id }}
+      </template>
       <template v-slot:items="props">
         {{ props.item.title }}
       </template>
@@ -14,7 +17,7 @@
     </b-table>
     <b-pagination
       v-model="currentPage"
-      :total-rows="rows"
+      :total-rows="row"
       :per-page="perPage"
       aria-controls="my-table"
       align="center"
@@ -35,12 +38,11 @@ export default {
     return {
       perPage: 3,
       currentPage: 1,
-      fields: ['title', 'artist'],
-      bookmarks: [
-        /* { title: 'Song', artist: 'John Doe' },
+      fields: ['id', 'title', 'artist'],
+      bookmarks: []
+      /* { title: 'Song', artist: 'John Doe' },
         { title: 'Song', artist: 'Rubin' },
         { title: 'Song', artist: 'Shirley' } */
-      ]
     }
   },
   components: {

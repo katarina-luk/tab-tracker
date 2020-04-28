@@ -1,25 +1,24 @@
 <template>
   <div>
     <my-header />
-    <v-layout>
-      <v-flex xs6>
+<b-container>
+  <b-row class="justify-content-md-center">
+        <b-col col lg="6">
         <song-metadata :song="song" />
-      </v-flex>
-
-      <v-flex xs6 class="ml-2">
+        </b-col>
+ <b-col  col lg="6">
         <you-tube :youtubeId="song.youtubeId" />
-      </v-flex>
-    </v-layout>
-
-    <v-layout class="mt-2">
-      <v-flex xs6>
-        <tab :song="song" />
-      </v-flex>
-
-      <v-flex xs6 class="ml-2">
+       </b-col>
+         </b-row>
+  <b-row >
+ <b-col col lg="6">
+           <tab :song="song" />
+ </b-col>
+ <b-col col lg="6">
         <lyrics :song="song" />
-      </v-flex>
-    </v-layout>
+ </b-col>
+   </b-row>
+    </b-container>
       <my-footer/>
   </div>
 </template>
@@ -33,6 +32,8 @@ import SongService from '@/services/SongsService'
 import MyHeader from '@/components/Header'
 import MyFooter from '@/components/Footer'
 import Panel from '@/components/globals/Panel'
+import SongHistoryService from '@/services/SongHistoryService'
+import {mapState} from 'vuex'
 
 export default {
   data () {
@@ -40,10 +41,22 @@ export default {
       song: {}
     }
   },
+  computed: {
+    ...mapState([
+      'isUserLoggedIn',
+      'user',
+      'route'
+    ])
+  },
   async mounted () {
     const songId = this.$store.state.route.params.songId
     this.song = (await SongService.show(songId)).data
     // console.log(this.song)
+    if (this.isUserLoggedIn) {
+      SongHistoryService.post({
+        songId: songId
+      })
+    }
   },
   components: {
     Panel,
@@ -62,6 +75,7 @@ export default {
     margin-left: 0;
     margin-right: 0%;
 }
+
 /*
 textarea {
   width: 100%;

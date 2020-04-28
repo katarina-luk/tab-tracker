@@ -6,6 +6,9 @@
        <b-col col md="15" v-if="isUserLoggedIn">
       <songs-bookmarks />
        </b-col>
+       <b-col col md="15" v-if="isUserLoggedIn">
+      <recently-viewed-songs />
+       </b-col>
     </b-row>
 
  <b-row class="justify-content-md-center">
@@ -28,6 +31,7 @@ import {mapState} from 'vuex'
 import SongsPanel from '@/components/Songs/SongsPanel'
 import SongsSearchPanel from '@/components/Songs/SongsSearchPanel'
 import SongsService from '@/services/SongsService'
+import RecentlyViewedSongs from '@/components/Songs/RecentlyViewedSongs'
 import Panel from '@/components/globals/Panel'
 import SongsBookmarks from '@/components/Songs/SongsBookmarks'
 import MyHeader from '@/components/Header'
@@ -39,7 +43,8 @@ export default {
     SongsSearchPanel,
     SongsBookmarks,
     MyHeader,
-    MyFooter
+    MyFooter,
+    RecentlyViewedSongs
 
   },
   data () {
