@@ -1,10 +1,14 @@
 <template>
+<div class="l-auth">
   <panel title="Search">
+    <div>
     <v-text-field
       label="Search by song title, artist, album, or genre"
       v-model="search"
     ></v-text-field>
+    </div>
   </panel>
+  </div>
 </template>
 
 <script>
@@ -37,6 +41,33 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
+  @import "../../assets/style.scss";
+.l-auth {
+   color: $border-color-input !important;
+    background-color: $background-color;
+    padding: 15px;
+    margin: 45px auto;
+    min-width: 320px;
+    max-width: 620px;
+    animation: bounceIn 1s forwards ease;
+      label, input, .icon {
+      color: #29b6f6!important;
+    }
+    .input-group__details {
+      &:before {
+        background-color: $border-color-input !important;
+      }
+    }
+     .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    color: $border-color-input !important;
+}
+.table th{
+   color: $border-color-input !important;
+}
+  }
 
 </style>

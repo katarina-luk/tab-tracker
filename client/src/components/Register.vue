@@ -1,29 +1,50 @@
 <template>
-<div>
-     <my-header />
- <b-container fluid >
-   <b-row class="justify-content-md-center">
-     <b-col cols="12" md="auto">
+ <div class="l-auth">
+       <v-container fluid>
+  <v-row class="justify-content-md-center">
+     <v-col cols="12" md="auto">
    <b-card
-    title="Sing Up"
-    img-src= "https://i.pinimg.com/originals/c5/71/54/c5715484a6bcc1b2bb46b2c4334dbca5.gif"
-    img-alt="Image"
-    img-top
+   bg-variant="light"
+    title="Sign Up"
+    class="text-center"
     tag="article"
     style="max-width: 25rem;"
-    class="mb-2 vega">
-      <form name="tab-tracker-form" autocomplete="off">
-    <v-text-field v-model='email' label='Email'></v-text-field> <br>
-    <v-text-field v-model='password' label='Password' type='password' autocomplete='new-password'></v-text-field>
-      </form>
-    <br>
+    >
+        <v-col cols="12" sm="20">
+          <!--panel title='Login'-->
+            <v-text-field
+             label="Email"
+                      v-model="email"
+ :rules="[rules, rules.min]"
+                       required
+                      color="blue darken-2"
+                      >
+        </v-text-field>
+        </v-col> <br>
+        <v-col cols="25" sm="12">
+        <v-text-field label="Password"
+                      prepend-icon="password"
+                      v-model="password"
+                      :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                      :rules="[rules, rules.min]"
+                      :type="show1 ? 'text' : 'password'"
+                      counter
+                      @click:append="show1 = !show1"
+                      required>
+        </v-text-field></v-col> <br>
     <div class='danger-alert' v-html='error' />
     <br>
-    <v-btn class='cyan mb-5' @click='register'>Register</v-btn>
+    <v-col class="text-center" >
+      <div class="my-2">
+    <v-btn    block black @click='register'>Register</v-btn>
+          <!--/panel-->
+      </div>
+    </v-col>
    </b-card>
-     </b-col>
-   </b-row>
-    </b-container>
+     </v-col>
+  </v-row>
+</v-container>
+
 </div>
 </template>
 
@@ -36,8 +57,10 @@ export default {
   data () {
     return {
       email: '',
+      error: null,
+      show1: false,
       password: '',
-      error: null
+      rules: [ (value) => !!value || 'This field is required' ]
     }
   },
   methods: {
@@ -66,12 +89,31 @@ export default {
 }
 </script>
 
-<style scoped>
-
-@media (max-width: 400px) {
-    .vega {
-    height: 40px;
-    background-color: green;
+<style lang="scss">
+  @import "../assets/style.scss";
+.l-auth {
+    background-color: $background-color;
+    padding: 15px;
+    margin: 45px auto;
+    min-width: 320px;
+    max-width: 420px;
+    animation: bounceIn 1s forwards ease;
+      label, input, .icon {
+      color: #29b6f6!important;
+    }
+    .input-group__details {
+      &:before {
+        background-color: $border-color-input !important;
+      }
+    }
   }
+   .v-input__icon--append .v-icon {
+    color: rgb(55, 182, 233);
 }
+
+     .box {
+          display: flex;
+            justify-content: center;
+        }
+
 </style>

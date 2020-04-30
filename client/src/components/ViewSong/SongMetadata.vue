@@ -1,6 +1,7 @@
 
 <template>
   <panel title="Song Metadata">
+    <div class="words">
     <v-layout>
       <v-flex xs6>
         <div class="song-title">
@@ -57,6 +58,7 @@
             {{song.album}}
         </v-flex>
       </v-layout>
+    </div>
     </panel>
 </template>
 
@@ -165,7 +167,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
+  @import "../../assets/style.scss";
+.words {
+     color: white !important;
+
+}
 .song {
   padding: 20px;
   height: 330px;

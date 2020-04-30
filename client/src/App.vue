@@ -14,40 +14,25 @@ export default {
 
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  color: #2c3e50;
-}
+<style lang="scss">
+  @import "/assets/style.scss";
 
- .input-group--text-field input{
-   border-bottom: 1px solid black;
- }
- .toolbar__title{
-   color: white;
- }
-.btn__content{
-  color: white;
-}
-.layout.column{
-  text-align: center;
-  margin-left: 40px;
-  margin-right: 40px;
-  margin-top: 100px;
-}
-
-.layout.column>.flex{
-   margin-left: 30%;
-    margin-right: 30%;
-}
-.danger-alert{
-  color: red;
-  margin-bottom: 5px;
-}
-
+  body {
+    background: url('./assets/images/background.jpg') no-repeat  center center fixed;
+    background-size: cover;
+    &:after {
+      content: '';
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: $background-tint;
+      opacity: .3;
+      z-index: -1;
+    }
+    .application {
+      background: none;
+    }
+  }
 </style>

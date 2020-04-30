@@ -11,15 +11,12 @@
        </b-col>
     </b-row>
 
- <b-row class="justify-content-md-center">
    <b-row :class="{
      xs12: !isUserLoggedIn,
        xs6: isUserLoggedIn
-     }">
- <b-row class="justify-content-md-center" > <b-col col lg="10">  <songs-search-panel /></b-col></b-row>
+     }"></b-row>
+ <b-row class="justify-content-md-center" > <b-col col md="20">  <songs-search-panel /></b-col></b-row>
  <b-row class="justify-content-md-center"><b-col col md="15">   <songs-panel /></b-col></b-row>
-   </b-row>
- </b-row>
 
  </b-container>
  <my-footer />

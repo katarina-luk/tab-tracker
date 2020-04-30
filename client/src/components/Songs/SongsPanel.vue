@@ -12,6 +12,7 @@
               fab>
               <v-icon>add</v-icon>
               </v-btn>
+            <div class="l-auth">
               <div v-for='song in songs'
               class="song"
                  :key='song.id'>
@@ -39,6 +40,7 @@
                    </v-flex>
                  </v-layout>
               </div>
+            </div>
           </panel>
 </template>
 
@@ -93,7 +95,26 @@ export default {
 
 </script>
 
-<style scoped>
+<style lang="scss">
+  @import "../../assets/style.scss";
+.l-auth {
+   color: $border-color-input !important;
+    background-color: $background-color;
+    padding: 15px;
+    margin: 45px auto;
+    min-width: 320px;
+    max-width: 620px;
+    animation: bounceIn 1s forwards ease;
+      label, input, .icon {
+      color: #29b6f6!important;
+    }
+    .input-group__details {
+      &:before {
+        background-color: $border-color-input !important;
+      }
+    }
+  }
+
 .layout.column>.flex {
     margin-left: 0;
     margin-right: 0%;

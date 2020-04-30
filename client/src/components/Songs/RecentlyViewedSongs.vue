@@ -1,8 +1,9 @@
 <template>
   <div>
     <panel title="Recently Viewed Songs">
+       <div class="l-auth">
       <template>
-         <div>
+        <div>
          <b-table
         :fields="fields"
         :items="histories"
@@ -25,6 +26,7 @@
     ></b-pagination>
         </div>
       </template>
+       </div>
     </panel>
   </div>
 </template>
@@ -64,5 +66,33 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+  @import "../../assets/style.scss";
+.l-auth {
+   color: $border-color-input !important;
+    background-color: $background-color;
+    padding: 15px;
+    margin: 45px auto;
+    min-width: 320px;
+    max-width: 420px;
+    animation: bounceIn 1s forwards ease;
+      label, input, .icon {
+      color: #29b6f6!important;
+    }
+    .input-group__details {
+      &:before {
+        background-color: $border-color-input !important;
+      }
+    }
+     .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    color: $border-color-input !important;
+}
+.table th{
+   color: $border-color-input !important;
+}
+  }
+
 </style>

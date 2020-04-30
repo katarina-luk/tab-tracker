@@ -1,5 +1,5 @@
 <template>
- <div class="bg">
+ <div class="bg words">
     <view-wrapper>
       <mdb-mask class="d-flex gradient justify-content-center align-items-center">
         <mdb-container>
@@ -86,7 +86,14 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+  @import "../assets/style.scss";
+  .words{
+    color: white!important;
+  }
+  .v-btn.v-btn--contained.v-btn--router.theme--dark.v-size--default{
+    margin: 2px;
+  }
 body, html {
   height: 100%;
   margin: 0;
@@ -101,7 +108,6 @@ body, html {
 
    .bg {
     /* The image used */
-    background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg");
 
     /* Full height */
     height: 100%;
