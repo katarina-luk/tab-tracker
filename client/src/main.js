@@ -2,10 +2,12 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+// import VueCookie from 'vue-cookie'
 import router from './router'
 import Vuetify from 'vuetify'
 import FlagIcon from 'vue-flag-icon'
 import {sync} from 'vuex-router-sync'
+import Paginate from 'vuejs-paginate'
 import '@fortawesome/fontawesome-free/css/all.css'
 import 'vuetify/dist/vuetify.min.css'
 import VueSweetalert2 from 'vue-sweetalert2'
@@ -21,6 +23,7 @@ import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import('../node_modules/vuetify/dist/vuetify')
 
 Vue.use(VueSweetalert2)
 Vue.use(FlagIcon)
@@ -35,6 +38,7 @@ Vue.use(VueYouTubeEmbed)
 Vue.component('panel', Panel)
 Vue.component('footer', MyFooter)
 Vue.component('header', MyHeader)
+Vue.component('paginate', Paginate)
 
 sync(store, router)
 

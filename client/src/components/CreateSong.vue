@@ -4,6 +4,7 @@
   <b-container>
    <b-row class="justify-content-lg-center">
      <b-col cols="20" md="auto"><panel title="Song Metadata">
+             <div class="l-auth">
         <v-text-field
           label="Title"
           required
@@ -44,9 +45,10 @@
           required
           :rules="[required]"
           v-model="song.youtubeId"
-        ></v-text-field>
+        ></v-text-field></div>
       </panel></b-col>
      <b-col col lg="6" >  <panel title="Song Structure" class="ml-2">
+              <div class="l-auth">
         <v-text-field
           label="Tab"
           multi-line
@@ -72,6 +74,7 @@
         @click="create">
         Create Song
       </v-btn>
+      </div>
       </panel>
     </b-col>
 </b-row>
@@ -137,5 +140,32 @@ export default {
 }
 </script>
 
-<style scoped>
-</style>
+<style lang="scss">
+  @import "../assets/style.scss";
+  .l-auth {
+   color: $border-color-input !important;
+    background-color: $background-color;
+    padding: 15px;
+    margin: 45px auto;
+    min-width: 320px;
+    max-width: 420px;
+    animation: bounceIn 1s forwards ease;
+      label, input, .icon {
+      color: #29b6f6!important;
+    }
+    .input-group__details {
+      &:before {
+        background-color: $border-color-input !important;
+      }
+    }
+     .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    color: $border-color-input !important;
+}
+.table th{
+   color: $border-color-input !important;
+}
+  }
+  </style>

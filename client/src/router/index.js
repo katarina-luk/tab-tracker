@@ -7,6 +7,7 @@ import ViewSong from '@/components/ViewSong/Index'
 import CreateSong from '@/components/CreateSong'
 import EditSong from '@/components/EditSong'
 import HelloPage from '@/components/HelloPage'
+
 Vue.use(Router)
 
 export default new Router({

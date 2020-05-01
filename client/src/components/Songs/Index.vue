@@ -24,6 +24,7 @@
 </template>
 
 <script>
+
 import {mapState} from 'vuex'
 import SongsPanel from '@/components/Songs/SongsPanel'
 import SongsSearchPanel from '@/components/Songs/SongsSearchPanel'
@@ -57,12 +58,52 @@ export default {
   },
   async mounted () {
     this.songs = (await SongsService.index()).data
+    // const tt = require('../../mixins')
+  },
+  methods: {
+    pageChangeHandler () {
+    }
   }
 
 }
 </script>
 
-<style scoped>
+<style lang="scss">
+  //@import "../../../scss/components/_variables.scss";
+  // @import "../../../scss/components/_global.scss";
+@import "../../assets/style.scss";
+ li {
+    display: inline-block;
+    border-radius: 2px;
+    text-align: center;
+    vertical-align: top;
+    height: 30px;
+
+    a {
+      color: #444;
+      display: inline-block;
+      font-size: 1.2rem;
+      padding: 0 10px;
+      line-height: 30px;
+    }
+
+    &.active a { color: #fff; }
+
+    &.active { background-color:rgb(117, 117, 224);}// color("materialize-red", "lighten-2"); }
+
+    &.disabled a {
+      cursor: default;
+      color: #999;
+    }
+
+    i {
+      font-size: 2rem;
+    }
+  }
+  li.pages ul li {
+    display: inline-block;
+    float: none;
+  }
 .layout.column>.flex {
     margin-left: 0;
     margin-right: 0%;
