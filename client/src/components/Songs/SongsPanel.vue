@@ -1,53 +1,73 @@
+/* eslint-disable no-undef */
 <template>
-
-          <panel title='Songs'>
-            <v-btn
-            slot="action"
-            :to="{name: 'songs-create'}"
-              light
-              medium
-              absolute
-              right
-              middle
-              fab>
-              <v-icon>add</v-icon>
-              </v-btn>
-            <div class="l-auth">
-              <div v-if="songs">
-                 <v-layout :start="pagination.range.from+1">
-                   <v-flex xs10 v-for="song in paginate(songs)" v-bind:key="song">
-                     <div class="song-title">
-                       {{song.title}}
-                     </div>
-                     <div class="song-artist">
-                       {{song.artist}}
-                     </div>
-                     <div class="song-genre">
-                       {{song.genre}}
-                     </div>
-                     <v-btn
-                     dark
-                       class="cyan"
-                       :to="{name: 'song', params: {songId: song.id}}">
-                         View
-                      </v-btn>
-                   </v-flex>
+  <panel title='Songs'>
+  <v-btn
+    slot="action"
+    :to="{name: 'songs-create'}"
+    light
+    medium
+    absolute
+    right
+    middle
+    fab>
+    <v-icon>add</v-icon>
+  </v-btn>
+    <div class="l-auth">
+      <v-container justify-center >
+        <div v-if="songs" class="song" >
+                <v-layout :start="pagination.range.from+1" wrap >
+                   <div v-for="song in paginate(songs)" v-bind:key="song">
+                     <v-row>
+                     <v-col col-6 col-md-4 > <img class="album-image" :src="song.albumImageUrl" /></v-col>
+                        <v-col col-6 col-md-4 >
+                        <div class="song-title">
+                          {{song.title}}
+                        </div>
+                        <div class="song-artist">
+                          {{song.artist}}
+                        </div>
+                        <div class="song-genre">
+                          {{song.genre}}
+                        </div>
+                            <v-btn
+                            dark
+                            class="cyan mt-2"
+                            :to="{name: 'song', params: {songId: song.id}}">
+                            View
+                            </v-btn>
+                        </v-col>
+                      </v-row>
+                   </div>
                  </v-layout>
-              </div>
-              <p class="mt-5">
+          </div>
+          <div class="mt-2">
+            Products per page:
+              <select v-model="perPage">
+                <option>1</option>
+                <option>3</option>
+                <option>6</option>
+              </select>
+          </div>
+      </v-container>
+
+    </div>
+     <div class="l-auth">
+    <p class="mt-3 " style="text-align: center;" >
                 Page {{currentPage}} out of {{pagination.totalPages}}
               </p>
-                  <button @click="toPage(currentPage-1)" :disabled="currentPage == 1" >Previous page</button>
-                    <nav>
-                      <v-layout >
-                        <v-flex xs10 v-for="page in pagination.totalPages" v-bind:key="page">
-                  <button @click="toPage(page)">{{page}}</button>
-                        </v-flex>
-                      </v-layout>
-                    </nav>
-                  <button @click="toPage(currentPage+1)" :disabled="currentPage == pagination.totalPages">Next page</button>
-            </div>
-          </panel>
+               <v-container justify-center class="d-inline-flex pa-2" style="justify-content: center;">
+              <v-btn @click="toPage(currentPage-1)" :disabled="currentPage == 1" small class="mr-2" >Previous page</v-btn>
+                <nav>
+                  <v-layout >
+                    <v-flex xs10 v-for="page in pagination.totalPages" v-bind:key="page">
+                      <button @click="toPage(page)" class="m-1">{{page}}</button>
+                    </v-flex>
+                  </v-layout>
+                </nav>
+              <v-btn @click="toPage(currentPage+1)" :disabled="currentPage == pagination.totalPages" small class="ml-2">Next page</v-btn>
+      </v-container>
+     </div>
+  </panel>
 </template>
 
 <script>
@@ -90,7 +110,31 @@ export default {
           }
         }
       }
-    }
+    } /* ,
+    pageLinks () {
+      if (this.songs.length) {
+        // eslint-disable-next-line one-var
+        let negativePoint = parseInt(this.currentPage) - this.pageLinksCount,
+          positivePoint = parseInt(this.currentPage) + this.pageLinksCount
+        // eslint-disable-next-line no-undef
+        pages = []
+        if (negativePoint < 1) {
+          negativePoint = 1
+        }
+
+        if (positivePoint > this.pagination.totalPages) {
+          positivePoint = this.pagination.totalPages
+        }
+
+        for (let i = negativePoint; i <= positivePoint; i++) {
+          // eslint-disable-next-line no-undef
+          pages = push(i)
+        }
+
+        // eslint-disable-next-line no-undef
+        return pages
+      }
+    } */
   },
   methods: {
     toPage (page) {
@@ -110,7 +154,7 @@ export default {
   },
   created () {
     if (this.$route.query.page) {
-      this.currentPage = parseInt(this.$$route.query.page)
+      this.currentPage = parseInt(this.$route.query.page)
     }
   },
   watch: {
@@ -118,6 +162,18 @@ export default {
       immediate: true,
       async handler (value) {
         this.songs = (await SongsService.index(value)).data
+      }
+    },
+    '$route' (to) {
+      this.currentPage = parseInt(to.query.page) || 1
+    },
+    perPage () {
+      if (this.currentPage > this.pagination.totalPages) {
+        this.$router.push({
+          query: Object.assign({}, this.$route.query, {
+            page: this.pagination.totalPages
+          })
+        })
       }
     }
   }
@@ -152,7 +208,10 @@ export default {
 .song{
   padding: 20px;
   height: 330px;
+  width: 100%;
   overflow: hidden;
+  max-height: 2000px;
+  min-height: 1350px;
 }
 
 .song-title{
@@ -167,7 +226,7 @@ export default {
   font-size: 18px;
 }
 .album-image{
-  width: 70%;
+  width: 100%;
   margin: 0 auto;
 }
 </style>
