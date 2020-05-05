@@ -13,38 +13,45 @@
               <v-icon>add</v-icon>
               </v-btn>
             <div class="l-auth">
-              <div v-for='song in songs'
-              class="song"
-                 :key='song.id'>
-                 <v-layout>
-                   <v-flex xs6>
+              <div v-if="songs">
+                 <v-layout :start="pagination.range.from+1">
+                   <v-flex xs10 v-for="song in paginate(songs)" v-bind:key="song">
                      <div class="song-title">
                        {{song.title}}
                      </div>
-                      <div class="song-artist">
+                     <div class="song-artist">
                        {{song.artist}}
                      </div>
-                      <div class="song-genre">
+                     <div class="song-genre">
                        {{song.genre}}
                      </div>
-                      <v-btn
+                     <v-btn
                      dark
                        class="cyan"
                        :to="{name: 'song', params: {songId: song.id}}">
                          View
                       </v-btn>
                    </v-flex>
-
-                    <v-flex xs6>
-                      <img class="album-image" :src="song.albumImageUrl" />
-                   </v-flex>
                  </v-layout>
               </div>
+              <p class="mt-5">
+                Page {{currentPage}} out of {{pagination.totalPages}}
+              </p>
+                  <button @click="toPage(currentPage-1)" :disabled="currentPage == 1" >Previous page</button>
+                    <nav>
+                      <v-layout >
+                        <v-flex xs10 v-for="page in pagination.totalPages" v-bind:key="page">
+                  <button @click="toPage(page)">{{page}}</button>
+                        </v-flex>
+                      </v-layout>
+                    </nav>
+                  <button @click="toPage(currentPage+1)" :disabled="currentPage == pagination.totalPages">Next page</button>
             </div>
           </panel>
 </template>
 
 <script>
+import {mapState} from 'vuex'
 import SongsPanel from '@/components/Songs/SongsPanel'
 import SongsService from '@/services/SongsService'
 import Panel from '@/components/globals/Panel'
@@ -56,10 +63,56 @@ export default {
   data () {
     return {
       songs: null,
-      song: null
+      // song: null,
+      perPage: 3,
+      currentPage: 1,
+      pageLinksCount: 3
     }
   },
-
+  computed: {
+    ...mapState([
+      'isUserLoggedIn',
+      'user',
+      'songs'
+    ]),
+    pagination () {
+      if (this.songs) {
+        // eslint-disable-next-line one-var
+        let totalSongs = this.songs.length,
+          // eslint-disable-next-line no-undef
+          pageFrom = (this.currentPage * this.perPage) - this.perPage
+        return {
+          totalSongs: totalSongs,
+          totalPages: Math.ceil(totalSongs / this.perPage),
+          range: {
+            from: pageFrom,
+            to: pageFrom + this.perPage
+          }
+        }
+      }
+    }
+  },
+  methods: {
+    toPage (page) {
+      this.$router.push({
+        query: Object.assign({}, this.$route.query, {
+          page
+        })
+      })
+      this.currentPage = page
+    },
+    paginate (list) {
+      return list.slice(
+        this.pagination.range.from,
+        this.pagination.range.to
+      )
+    }
+  },
+  created () {
+    if (this.$route.query.page) {
+      this.currentPage = parseInt(this.$$route.query.page)
+    }
+  },
   watch: {
     '$route.query.search': {
       immediate: true,
@@ -68,30 +121,7 @@ export default {
       }
     }
   }
-}/*,
-  methods: {
-    async deleteSong () {
-      try {
-        const songId = this.$store.state.route.params.id
-        await SongsService.delete(songId)
-        this.songId = null
-      } catch (err) {
-        console.log(err)
-      }
-    }
-  }
 }
-,
-  async mounted () {
-    this.songs = (await SongsService.index()).data
-  }
-  async mounted () {
-    const songId = this.$store.state.route.params.songId
-    this.song = await SongService.delete(songId)
-    this.song=null
-    // console.log(this.song)
-  }
-  */
 
 </script>
 

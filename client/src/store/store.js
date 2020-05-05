@@ -13,6 +13,7 @@ export default new Vuex.Store({
   state: {
     token: null,
     user: null,
+    songs: null,
     isUserLoggedIn: false
   },
   mutations: {
@@ -22,6 +23,9 @@ export default new Vuex.Store({
     },
     setUser (state, user) {
       state.user = user
+    },
+    setSongs (state, songs) {
+      state.songs = songs
     }
   },
   actions: {
@@ -30,6 +34,9 @@ export default new Vuex.Store({
     },
     setUser ({commit}, user) {
       commit('setUser', user)
+    },
+    setsongs ({commit}, songs) {
+      commit('setSongs', songs)
     }
   }
 })

@@ -19,7 +19,7 @@
  <b-row class="justify-content-md-center"><b-col col md="15">   <songs-panel /></b-col></b-row>
 
  </b-container>
- <my-footer />
+<my-footer />
 </div>
 </template>
 
@@ -34,7 +34,13 @@ import Panel from '@/components/globals/Panel'
 import SongsBookmarks from '@/components/Songs/SongsBookmarks'
 import MyHeader from '@/components/Header'
 import MyFooter from '@/components/Footer'
+// import axios from 'axios'
 export default {
+  data () {
+    return {
+      songs: {}
+    }
+  },
   components: {
     Panel,
     SongsPanel,
@@ -45,11 +51,6 @@ export default {
     RecentlyViewedSongs
 
   },
-  data () {
-    return {
-      songs: null
-    }
-  },
   computed: {
     ...mapState([
       'isUserLoggedIn',
@@ -58,13 +59,7 @@ export default {
   },
   async mounted () {
     this.songs = (await SongsService.index()).data
-    // const tt = require('../../mixins')
-  },
-  methods: {
-    pageChangeHandler () {
-    }
   }
-
 }
 </script>
 
