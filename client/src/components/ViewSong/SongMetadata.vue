@@ -32,7 +32,7 @@
           dark
           class="cyan"
           @click="setAsBookmark">
-          Set As Bookmark
+          Add to Favorites
         </v-btn>
 
         <v-btn
@@ -40,7 +40,7 @@
           dark
           class="cyan"
           @click="unsetAsBookmark">
-          Unset As Bookmark
+          Delete from Favorites
         </v-btn>
         <v-spacer></v-spacer>
          <v-btn
@@ -49,7 +49,7 @@
           class="cyan mt-2"
           @click="deleteSong"
           >
-          Delete
+          Delete Song
           </v-btn>
       </v-flex>
 

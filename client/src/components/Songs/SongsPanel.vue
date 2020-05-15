@@ -12,13 +12,13 @@
     fab>
     <v-icon>add</v-icon>
   </v-btn>
-    <div class="l-auth">
+    <div class="l">
       <v-container justify-center >
         <div v-if="songs" class="song" >
                 <v-layout :start="pagination.range.from+1" wrap >
                    <div v-for="song in paginate(songs)" v-bind:key="song">
                      <v-row>
-                     <v-col col-6 col-md-4 > <img class="album-image" :src="song.albumImageUrl" /></v-col>
+                     <v-col col-6 col-md-4 > <img class="album-image" :src="song.albumImageUrl"/></v-col>
                         <v-col col-6 col-md-4 >
                         <div class="song-title">
                           {{song.title}}
@@ -40,7 +40,7 @@
                    </div>
                  </v-layout>
           </div>
-          <div class="mt-2">
+          <div class="mt-2" style="font-family: 'Lobster', Georgia, Times, serif;">
             Products per page:
               <select v-model="perPage">
                 <option>1</option>
@@ -51,8 +51,8 @@
       </v-container>
 
     </div>
-     <div class="l-auth">
-    <p class="mt-3 " style="text-align: center;" >
+     <div class="l-a">
+    <p class="mt-3 " style="text-align: center;  font-family: 'Lobster', Georgia, Times, serif;" >
                 Page {{currentPage}} out of {{pagination.totalPages}}
               </p>
                <v-container justify-center class="d-inline-flex pa-2" style="justify-content: center;">
@@ -183,13 +183,13 @@ export default {
 
 <style lang="scss">
   @import "../../assets/style.scss";
-.l-auth {
+.l {
    color: $border-color-input !important;
     background-color: $background-color;
     padding: 15px;
     margin: 45px auto;
     min-width: 320px;
-    max-width: 620px;
+    max-width: 820px;
     animation: bounceIn 1s forwards ease;
       label, input, .icon {
       color: #29b6f6!important;
@@ -200,6 +200,15 @@ export default {
       }
     }
   }
+  .l-a{
+     color: $border-color-input !important;
+    background-color: $background-color;
+    padding: 15px;
+    margin: 45px auto;
+    min-width: 320px;
+    max-width: 820px;
+    animation: bounceIn 1s forwards ease;
+  }
 
 .layout.column>.flex {
     margin-left: 0;
@@ -209,21 +218,24 @@ export default {
   padding: 20px;
   height: 330px;
   width: 100%;
-  overflow: hidden;
-  max-height: 2000px;
-  min-height: 1350px;
+  overflow: scroll;
+  max-height:100%;
+  min-height: 100% ;
 }
 
 .song-title{
   font-size: 30px;
+  font-family: 'Lobster', Georgia, Times, serif;
 
 }
 .song-artist{
   font-size: 24px;
+  font-family: 'Lobster', Georgia, Times, serif;
 
 }
 .song-genre{
   font-size: 18px;
+  font-family: 'Lobster', Georgia, Times, serif;
 }
 .album-image{
   width: 100%;

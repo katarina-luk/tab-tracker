@@ -106,7 +106,7 @@ export default {
 .song{
   padding: 20px;
   height: 330px;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .song-title{

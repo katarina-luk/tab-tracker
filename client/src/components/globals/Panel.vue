@@ -36,5 +36,7 @@ element.style {
     margin-left: 0;
     margin-right: 0%;
 }
-
+.v-toolbar__title{
+   font-family: 'Lobster', Georgia, Times, serif;
+}
 </style>

@@ -7,7 +7,7 @@ import ViewSong from '@/components/ViewSong/Index'
 import CreateSong from '@/components/CreateSong'
 import EditSong from '@/components/EditSong'
 import HelloPage from '@/components/HelloPage'
-
+import Player from '@/components/Player'
 Vue.use(Router)
 
 export default new Router({
@@ -46,6 +46,11 @@ export default new Router({
       path: '/',
       name: 'hello',
       component: HelloPage
+    },
+    {
+      path: '/player',
+      name: 'player',
+      component: Player
     },
     {
       path: '*',

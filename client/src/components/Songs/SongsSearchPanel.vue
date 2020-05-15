@@ -1,5 +1,5 @@
 <template>
-<div class="l-auth">
+<div class="w">
   <panel title="Search">
     <div>
     <v-text-field
@@ -43,13 +43,13 @@ export default {
 
 <style lang="scss">
   @import "../../assets/style.scss";
-.l-auth {
+.w {
    color: $border-color-input !important;
     background-color: $background-color;
     padding: 15px;
     margin: 45px auto;
     min-width: 320px;
-    max-width: 620px;
+    max-width: 1120px;
     animation: bounceIn 1s forwards ease;
       label, input, .icon {
       color: #29b6f6!important;

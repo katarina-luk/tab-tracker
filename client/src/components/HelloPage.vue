@@ -14,13 +14,6 @@
              :to="{name:'login'}">
                Login
             </v-btn>
-             <v-btn
-              v-if='$store.state.isUserLoggedIn'
-             flat
-             dark
-            :to="{name:'songs'}">
-              Continue as a guest
-            </v-btn>
             <v-spacer></v-spacer>
              <v-btn
              flat
@@ -104,6 +97,12 @@ body, html {
  height: 100%;
   margin: 0;
   width: 100%;
+}
+h1, .v-btn__content, h6{
+  font-family: 'Lobster', Georgia, Times, serif;
+}
+.v-btn__content{
+  font-size: 11px;
 }
 
    .bg {

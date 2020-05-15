@@ -113,5 +113,8 @@ export default {
           display: flex;
             justify-content: center;
         }
+        .card-title{
+      font-family: 'Lobster', Georgia, Times, serif;
+}
 
 </style>

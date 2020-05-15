@@ -7,7 +7,7 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item :to="{name:'songs'}">Browse</b-nav-item>
+        <b-nav-item :to="{name:'player'}">Recommended</b-nav-item>
         <b-nav-item :to="{name:'songs'}">Home</b-nav-item>
       </b-navbar-nav>
 
@@ -21,60 +21,6 @@
     </b-collapse>
   </b-navbar>
 </div>
-<!--v-layout >
-      <v-toolbar flat dense fixed class="green" width='100%' row dark>
-         <v-toolbar-title class='mr-2'>
-             <router-link
-             class="home"
-             tag="span"
-             :to="{name:'songs'}">
-             MusicShutter
-             </router-link>
-        </v-toolbar-title>
-         <v-toolbar-items>
-             <v-btn
-              flat
-              class="st"
-              dark
-              :to="{name:'songs'}">
-              Browse
-            </v-btn>
-        </v-toolbar-items>
-         <v-toolbar-items>
-             <v-btn
-              flat
-              dark
-              id="scroll">
-              Home
-            </v-btn>
-        </v-toolbar-items>
-           <v-spacer></v-spacer>
-
-            <v-toolbar-items>
-              <v-btn
-               v-if='!$store.state.isUserLoggedIn'
-               flat
-               dark
-               :to="{name:'login'}">
-               Login
-              </v-btn>
-              <v-btn
-               v-if='!$store.state.isUserLoggedIn'
-               flat
-               dark
-               :to="{name:'register'}">
-               Sign Up
-              </v-btn>
-            <v-btn
-             v-if='$store.state.isUserLoggedIn'
-             flat
-             dark
-            @click="logout">
-              Log out
-            </v-btn>
-        </v-toolbar-items>
-      </v-toolbar>
-</v-layout-->
 </template>
 
 <script>
@@ -123,6 +69,12 @@ h1{
 
 h4 > .scroll {
   color: red;
+}
+.navbar-brand {
+  font-family: 'Lobster', Georgia, Times, serif;
+}
+.navbar-nav .nav-link{
+  font-family: 'Lobster', Georgia, Times, serif;
 }
 .header {
   display: flex;

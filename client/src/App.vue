@@ -18,7 +18,8 @@ export default {
   @import "/assets/style.scss";
 
   body {
-    background: url('./assets/images/background.jpg') no-repeat  center center fixed;
+    font-family: 'Lobster', Georgia, Times, serif;
+    background: url('https://images7.alphacoders.com/717/717773.jpg') no-repeat  center center fixed;
     background-size: cover;
     &:after {
       content: '';

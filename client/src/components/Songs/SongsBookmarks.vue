@@ -1,6 +1,6 @@
 <template>
   <div>
-    <panel title="Bookmarks">
+    <panel title="Favorites">
        <div class="l-auth">
       <template>
          <div>
