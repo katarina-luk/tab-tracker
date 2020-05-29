@@ -1,190 +1,181 @@
+
 <template>
-  <div>
+<div>
     <my-header />
+  <div id="appp">
     <main>
       <section class="player">
-        <h2 class="song-title">{{ current.title }} - <span>{{ current.artist }}</span></h2>
+        <div class="cover-wrapper">
+          <img v-bind:class="coverObject" :src="current.cover" />
+        </div>
+        <div class="song-details">
+          <h2 class="song-title">
+            {{ current.title }}
+          </h2>
+          <p class="artist">{{ current.artist }}</p>
+          <KProgress
+            :show-text="false"
+            class="progress-bar-wrapper"
+            v-bind:percent="current.percent"
+            :color="['#df83f1', '#82279f', '#53cfe0']"
+          />
+          <div class="timer">
+            <p class="start">{{ currentlyTimer }}</p>
+            <p class="end">
+              {{ current.totalTimer }}
+            </p>
+          </div>
+        </div>
         <div class="controls">
-          <button class="prev" @click="prev">Prev</button>
-          <button class="play" v-if="!isPlaying" @click="play">Play</button>
-          <button class="pause" v-else @click="pause">Pause</button>
-          <button class="next" @click="next">Next</button>
+          <button class="prev" @click="prev" v-if="songs.length > 1">
+            <font-awesome-icon icon="step-backward" />
+          </button>
+          <button class="play" v-if="!isPlaying" @click="play">
+            <font-awesome-icon icon="play" />
+          </button>
+          <button class="pause" v-else @click="pause">
+            <font-awesome-icon icon="pause" />
+          </button>
+          <button class="next" @click="next" v-if="songs.length > 1">
+            <font-awesome-icon icon="step-forward" />
+          </button>
         </div>
       </section>
-      <section class="playlist">
-        <h3>The Playlist</h3>
-        <button v-for="song in songs" v-bind:key="song.audio" @click="play(song)" :class="(song.audio == current.audio) ? 'song playing' : 'song'">
-          {{ song.title }} - {{ song.artist }}
-        </button>
-      </section>
     </main>
+    <section class="playlist">
+      <h3>Now Playing <span> 🎵 </span></h3>
+      <ul>
+        <li v-for="song in songs" :key="song.src" class="song">
+          <div class="cover-playlist">
+            <img class="cover" :src="song.cover" />
+          </div>
+          <div class="details" @click="play(song)">
+            <h2 class="song-title">
+              {{ song.title }}
+            </h2>
+            <p class="artist">{{ song.artist }}</p>
+            <KProgress
+              v-if="song.isPlaying"
+              :color="['#df83f1', '#82279f', '#53cfe0']"
+              :show-text="false"
+              class="progress-bar-wrapper"
+              v-bind:percent="song.percent"
+            />
+          </div>
+          <div class="actions">
+            <!--button @click="removeSongFromPlaylist(song)" class="delete">
+              <font-awesome-icon icon="times" />
+            </button-->
+          </div>
+        </li>
+      </ul>
+    </section>
   </div>
+<my-footer/>
+</div>
 </template>
 
 <script>
 import MyHeader from '@/components/Header'
 import MyFooter from '@/components/Footer'
+import KProgress from 'k-progress'
+import { formatTimer } from '../helpers/timer'
+import { deleteElement, threatSongs, shuffleArray } from '../helpers/utils'
+import songs from '../mocks/songs'
 export default {
-  name: 'app',
+  components: { KProgress, MyHeader, MyFooter },
+  name: 'App',
   data () {
     return {
       current: {},
+      coverObject: { cover: true, animated: false },
       index: 0,
       isPlaying: false,
-      songs: [
-        {
-          title: 'Break My Heart',
-          artist: 'Dua Lipa',
-          src: require('../playlist/dua-lipa-break-my-heart_.mp3')
-        },
-        {
-          title: 'Physical',
-          artist: 'Dua Lipa',
-          src: require('../playlist/dua-lipa-physical.mp3')
-        }
-      ],
+      currentlyTimer: '00:00',
+      songs: shuffleArray(songs),
       player: new Audio()
     }
   },
-  components: {
-    MyHeader,
-    MyFooter
-
-  },
   methods: {
+    listenersWhenPlay () {
+      this.player.addEventListener('timeupdate', () => {
+        var playerTimer = this.player.currentTime
+        this.currentlyTimer = formatTimer(playerTimer)
+        this.current.percent = (playerTimer * 100) / this.current.seconds
+        this.current.isPlaying = true
+      })
+      this.player.addEventListener(
+        'ended',
+        function () {
+          this.next()
+        }.bind(this)
+      )
+    },
+    setCover () {
+      this.coverObject.animated = true
+      setTimeout(() => {
+        this.coverObject.animated = false
+      }, 1000)
+    },
+    setCurrentSong () {
+      this.current = this.songs[this.index]
+      this.play(this.current)
+      this.setCover()
+    },
     play (song) {
       if (typeof song.src !== 'undefined') {
+        this.current.isPlaying = false
+        this.index = this.songs.indexOf(this.current)
         this.current = song
         this.player.src = this.current.src
       }
       this.player.play()
-      this.player.addEventListener('ended', function () {
-        this.index++
-        if (this.index > this.songs.length - 1) {
-          this.index = 0
-        }
-        this.current = this.songs[this.index]
-        this.play(this.current)
-      }.bind(this))
       this.isPlaying = true
+      this.setCover()
+      this.listenersWhenPlay()
     },
     pause () {
       this.player.pause()
       this.isPlaying = false
     },
     next () {
+      this.current.isPlaying = false
+      this.index = this.songs.indexOf(this.current)
       this.index++
       if (this.index > this.songs.length - 1) {
         this.index = 0
       }
-      this.current = this.songs[this.index]
-      this.play(this.current)
+      this.setCurrentSong()
     },
     prev () {
+      this.current.isPlaying = false
+      this.index = this.songs.indexOf(this.current)
       this.index--
       if (this.index < 0) {
         this.index = this.songs.length - 1
       }
-      this.current = this.songs[this.index]
-      this.play(this.current)
+      this.setCurrentSong()
+    },
+    removeSongFromPlaylist (song) {
+      if (this.songs.length > 1) {
+        if (this.index > 0) {
+          this.index--
+        }
+        this.current.isPlaying = false
+        this.songs = deleteElement(this.songs, song)
+        this.setCurrentSong()
+      }
     }
   },
-  created () {
+  mounted () {
+    this.songs = threatSongs(this.songs)
     this.current = this.songs[this.index]
     this.player.src = this.current.src
   }
 }
 </script>
 
-<style>
+<style >
+@import "../assets/styles/main.css";
 
-* {
-  margin: 0%;
-  padding: 0%;
-  box-sizing: border-box;
-}
-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-  background-color: black;
-  color: #FFF;
-}
-main {
-  width: 100%;
-  max-width: 768px;
-  margin: 0 auto;
-  padding: 25px;
-}
-.song-title {
-  color: white;
-  font-size: 32px;
-  font-weight: 700;
-  text-transform: uppercase;
-  text-align: center;
-}
-.song-title span {
-  font-weight: 400;
-  font-style: italic;
-}
-.controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 15px;
-}
-button {
-  appearance: none;
-  background: none;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-button:hover {
-  opacity: 0.8;
-}
-.play, .pause {
-  font-size: 20px;
-  font-weight: 700;
-  padding: 15px 25px;
-  margin: 0px 15px;
-  border-radius: 8px;
-  color: #FFF;
-  background-color: rgb(46, 180, 204);
-}
-.next, .prev {
-  font-size: 16px;
-  font-weight: 700;
-  padding: 10px 20px;
-  margin: 0px 15px;
-  border-radius: 6px;
-  color: #FFF;
-  background-color: rgb(23, 134, 161);
-}
-.playlist {
-  padding: 0px 30px;
-}
-.playlist h3 {
-  color:white;
-  font-size: 28px;
-  font-weight: 400;
-  margin-bottom: 30px;
-  text-align: center;
-}
-.playlist .song {
-  display: block;
-  width: 100%;
-  padding: 15px;
-  font-size: 20px;
-  font-weight: 700;
-  cursor: pointer;
-}
-.playlist .song:hover {
-  color: #FF5858;
-}
-.playlist .song.playing {
-  color: #FFF;
-  background-image: linear-gradient(to right,  rgb(23, 134, 161),rgb(46, 180, 204));
-}
 </style>

@@ -7,7 +7,7 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item :to="{name:'player'}">Recommended</b-nav-item>
+        <b-nav-item :to="{name:'player'}">PopularMusic</b-nav-item>
         <b-nav-item :to="{name:'songs'}">Home</b-nav-item>
       </b-navbar-nav>
 

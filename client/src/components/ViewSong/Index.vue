@@ -13,7 +13,7 @@
     <b-row class="justify-content-md-center">
 
  <b-col col lg="12">
-           <tab :song="song" />
+           <!--tab :song="song" /-->
  </b-col>
  <b-col col md="12">
         <lyrics :song="song" />
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import SoundCloud from 'vue-soundcloud-player'
 import Tab from '@/components/ViewSong/Tab'
 import Lyrics from '@/components/ViewSong/Lyrics'
 import SongMetadata from '@/components/ViewSong/SongMetadata'
@@ -66,7 +67,8 @@ export default {
     Lyrics,
     Tab,
     MyHeader,
-    MyFooter
+    MyFooter,
+    SoundCloud
   }
 }
 </script>

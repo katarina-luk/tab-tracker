@@ -49,21 +49,22 @@
       </panel></b-col>
      <b-col col lg="6" >  <panel title="Song Structure" class="ml-2">
               <div class="l-auth">
-        <v-text-field
+        <!--v-text-field
           label="Tab"
           multi-line
           required
           :rules="[required]"
           v-model="song.tab"
-        ></v-text-field>
+        ></v-text-field-->
 
-        <v-text-field
+        <v-textarea
           label="Lyrics"
           multi-line
+           name="input-7-4"
           required
           :rules="[required]"
           v-model="song.lyrics"
-        ></v-text-field>
+        ></v-textarea>
          <div class="danger-alert" v-if="error">
         {{error}}
       </div>
@@ -153,6 +154,9 @@ export default {
       label, input, .icon {
       color: #29b6f6!important;
     }
+    .theme--light.v-input, .theme--light.v-input input, .theme--light.v-input textarea {
+    color: #29b6f6;
+}
     .input-group__details {
       &:before {
         background-color: $border-color-input !important;

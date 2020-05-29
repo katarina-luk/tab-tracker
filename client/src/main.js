@@ -9,17 +9,19 @@ import {Howl, Howler} from 'howler'
 import FlagIcon from 'vue-flag-icon'
 import {sync} from 'vuex-router-sync'
 import Paginate from 'vuejs-paginate'
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {faPlay, faPause, faStepForward, faStepBackward, faTimes} from '@fortawesome/free-solid-svg-icons'
+import {faGithub} from '@fortawesome/free-brands-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import '@fortawesome/fontawesome-free/css/all.css'
 import 'vuetify/dist/vuetify.min.css'
-import '@progress/kendo-ui'
-import '@progress/kendo-theme-default'
-import {LayoutInstaller} from '@progress/kendo-layout-vue-wrapper'
 // import 'vuetify/dist/vuetify.min.css'
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
 import store from '@/store/store'
 import '@mdi/font/css/materialdesignicons.css'
 import VueYouTubeEmbed from 'vue-youtube-embed'
+import Sound from 'vue-soundcloud-player'
 import Panel from '@/components/globals/Panel'
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 
@@ -27,13 +29,14 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 // import('../node_modules/vuetify/dist/vuetify')
 
+library.add(faPlay, faPause, faStepForward, faStepBackward, faTimes, faGithub)
 Vue.use(VueSweetalert2)
 Vue.use(Howler)
 Vue.use(Howl)
+Vue.use(Sound)
 Vue.use(FlagIcon)
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
-Vue.use(LayoutInstaller)
 
 Vue.config.productionTip = false
 
@@ -43,6 +46,7 @@ Vue.use(VueAudio)
 Vue.component('panel', Panel)
 Vue.component('paginate', Paginate)
 Vue.component('vue-audio', VueAudio)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 sync(store, router)
 
 /* eslint-disable no-new */
