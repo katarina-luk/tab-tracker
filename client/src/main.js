@@ -11,6 +11,9 @@ import {sync} from 'vuex-router-sync'
 import Paginate from 'vuejs-paginate'
 import '@fortawesome/fontawesome-free/css/all.css'
 import 'vuetify/dist/vuetify.min.css'
+import '@progress/kendo-ui'
+import '@progress/kendo-theme-default'
+import {LayoutInstaller} from '@progress/kendo-layout-vue-wrapper'
 // import 'vuetify/dist/vuetify.min.css'
 import VueSweetalert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css'
@@ -30,6 +33,7 @@ Vue.use(Howl)
 Vue.use(FlagIcon)
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
+Vue.use(LayoutInstaller)
 
 Vue.config.productionTip = false
 
@@ -40,25 +44,6 @@ Vue.component('panel', Panel)
 Vue.component('paginate', Paginate)
 Vue.component('vue-audio', VueAudio)
 sync(store, router)
-
-Vue.filter('numbers', (value) => {
-  let number = value + 1
-  if (number < 10) {
-    return '0' + number + '.'
-  }
-  return number + '.'
-})
-
-Vue.filter('minutes', (value) => {
-  if (!value || typeof value !== 'number') return '00:00'
-  // eslint-disable-next-line one-var
-  let min = parseInt(value / 60),
-    sec = parseInt(value % 60)
-  min = min < 10 ? '0' + min : min
-  sec = sec < 10 ? '0' + sec : sec
-  value = min + ':' + sec
-  return value
-})
 
 /* eslint-disable no-new */
 new Vue({
