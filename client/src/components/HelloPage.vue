@@ -21,6 +21,14 @@
              :to="{name:'register'}">
                Sign Up
             </v-btn>
+            <v-spacer></v-spacer>
+             <v-btn
+             v-if="!isUserLoggedIn"
+             flat
+             dark
+             :to="{name:'songs'}">
+               Continue as a guest
+            </v-btn>
             </div>
             <mdb-col md="6" xl="5" class="mb-4">
              <!-- mdb-card id="classic-card">
@@ -56,6 +64,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import { mdbContainer, mdbRow, mdbCol, mdbNavbar, mdbNavItem, mdbNavbarNav, mdbNavbarToggler, ViewWrapper, mdbMask, mdbBtn, mdbCard, mdbCardBody, mdbInput, mdbIcon, mdbNavbarBrand } from 'mdbvue'
 export default {
   name: 'ClassicFormPage',
@@ -75,6 +84,12 @@ export default {
     mdbInput,
     mdbIcon,
     mdbNavbarBrand
+  },
+  computed: {
+    ...mapState([
+      'isUserLoggedIn',
+      'user'
+    ])
   }
 }
 </script>

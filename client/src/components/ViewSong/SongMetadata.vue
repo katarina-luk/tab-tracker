@@ -107,7 +107,7 @@ export default {
         })).data
         this.$swal({
           icon: 'success',
-          title: 'Bookmark is setting',
+          title: 'Song added to favorites',
           showConfirmButton: false,
           timer: 1500
         })
@@ -126,7 +126,7 @@ export default {
         this.bookmark = null
         this.$swal({
           icon: 'success',
-          title: 'Bookmark is unsetting',
+          title: 'Song is removed from favourites',
           showConfirmButton: false,
           timer: 1500
         })
@@ -134,41 +134,52 @@ export default {
         console.log(err)
         this.$swal({
           icon: 'success',
-          title: 'Bookmark is unsetting',
+          title: 'Song is removed from favourites',
           showConfirmButton: false,
-          footer: 'You has already set the bookmark'
+          footer: 'You has already add the song'
         })
       }
     },
     async deleteSong () {
-      try {
-        // const songId = this.$store.state.route.params.id
-        await SongsService.delete(this.song.id)
-        this.song = null
-        this.$swal({
-          icon: 'success',
-          title: 'Song is deleted',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        this.$router.push({
-          name: 'songs'
-        })
-      } catch (err) {
-        this.$swal({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!'
-        })
-        console.log(err)
+      this.$swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.value) {
+          try {
+            SongsService.delete(this.song.id)
+            this.song = null
+            this.$swal(
+              'Deleted!',
+              'Song has been deleted.',
+              'success'
+            )
+            this.$router.push({
+              name: 'songs'
+            })
+          } catch (err) {
+            this.$swal({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!'
+            })
+            console.log(err)
+          }
+        }
       }
+      )
     }
   }
 }
 </script>
 
 <style lang="scss">
-  @import "../../assets/style.scss";
+ // @import "../../assets/style.scss";
 .words {
      color: white !important;
 
@@ -187,8 +198,18 @@ export default {
 .song-genre {
   font-size: 18px;
 }
-.album-image {
-  width: 70%;
+img> .album-image {
+  max-width: 300px;
+  min-width: 150px;
   margin: 0 auto;
+}
+.theme--dark.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+    margin: 5px;
+}
+.v-btn:not(.v-btn--round).v-size--default {
+    height: 35px;
+    min-width: 50px;
+    padding: 0 16px;
+    margin: 5px;
 }
 </style>

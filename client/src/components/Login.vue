@@ -21,7 +21,7 @@
                       >
         </v-text-field>
         </v-col> <br>
-        <v-col cols="25" sm="12">
+          <v-col cols="12" sm="20">
         <v-text-field label="Password"
                       prepend-icon="password"
                       v-model="password"
@@ -115,6 +115,9 @@ export default {
         }
         .card-title{
       font-family: 'Lobster', Georgia, Times, serif;
+}
+.v-input__prepend-outer{
+  display: none;
 }
 
 </style>

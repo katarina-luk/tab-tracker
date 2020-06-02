@@ -23,9 +23,9 @@ export default {
       -moz-osx-font-smoothing: grayscale;
       text-align: center;
       color: #2c3e50;
-      margin-top: 60px;
-   background: url('https://images7.alphacoders.com/717/717773.jpg') no-repeat  center center fixed;
-    background-size: cover;
+      margin-top: 0px;
+      background: url('https://images7.alphacoders.com/717/717773.jpg') no-repeat  center center fixed;
+      background-size: cover;
    &:after {
       content: '';
       position: fixed;

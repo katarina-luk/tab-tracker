@@ -49,7 +49,8 @@
         ></v-text-field></div>
    </panel>
    </b-col>
-   <b-col col lg="6" >  <panel title="Song Structure" class="ml-2">
+   <b-col cols="20" md="auto">
+   <!--b-col col lg="6"-->  <panel title="Song Structure" class="ml-2">
      <div class="l-auth">
         <!--v-text-field
           label="Tab"

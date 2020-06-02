@@ -52,38 +52,22 @@ export default {
 </script>
 
 <style scoped>
-h1{
-  color: red;
-}
+
 .home{
     cursor: pointer;
-}
-.home:hover{
-    color: turquoise;
-}
-.scroll {
-  width: 100px;
-  height: 2250px;
-  background: #cccccc;
-}
-
-h4 > .scroll {
-  color: red;
 }
 .navbar-brand {
   font-family: 'Lobster', Georgia, Times, serif;
 }
 .navbar-nav .nav-link{
   font-family: 'Lobster', Georgia, Times, serif;
+  padding-top: 0px;
 }
-.header {
+
+/*.header {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-}
-@media screen and (max-width: 550px) {
-.st{
-  color: red;
-}
-}
+}*/
+
 </style>

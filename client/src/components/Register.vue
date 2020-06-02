@@ -15,15 +15,18 @@
             <v-text-field
              label="Email"
                       v-model="email"
- :rules="[rules, rules.min]"
+                     :rules="[rules, rules.min]"
                        required
                       color="blue darken-2"
+                      style="right: 20px; left: 0px; position: absolute;"
+
                       >
         </v-text-field>
         </v-col> <br>
         <v-col cols="25" sm="12">
         <v-text-field label="Password"
                       prepend-icon="password"
+                      style="right: 20px; left: 0px; position: absolute;"
                       v-model="password"
                       :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                       :rules="[rules, rules.min]"
@@ -118,5 +121,17 @@ export default {
         .card-title{
       font-family: 'Lobster', Georgia, Times, serif;
 }
-
+.v-input__prepend-outer{
+  display: none;
+}
+.v-text-field > .v-input__control > .v-input__slot > .v-text-field__slot> .v-label .theme--light {
+  right: 20px !important;
+   left: 0px !important;
+   position: absolute !important;
+}
+.v-text-field__slot> .v-label .theme--light {
+  right: 20px !important;
+   left: 0px !important;
+   position: absolute !important;
+}
 </style>

@@ -12,6 +12,10 @@
 ul {
   list-style: none;
 }
+li {
+ overflow: hidden;
+}
+
 
 body {
   display: flex;
@@ -172,10 +176,9 @@ button:hover {
 .playlist {
   background-color:rgba(0, 0, 0, .5);
   overflow-y: auto;
-  max-height: 622px;
+  max-height: 222px;
   border-radius: 5px;
   animation: scale-up-center 1s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-
 }
 
 .playlist h3 {
@@ -191,6 +194,9 @@ button:hover {
   color: rgb(55, 182, 233);
   display: flex;
   padding: 10px;
+  overflow: hidden;
+  height: 100px;
+
 }
 
 .actions > .delete {
@@ -208,7 +214,6 @@ button:hover {
   background-color: #ededed98;
   transition: box-shadow 0.2s, background-color 0.3s;
 }
-
 .timer {
   display: flex;
   width: 100%;

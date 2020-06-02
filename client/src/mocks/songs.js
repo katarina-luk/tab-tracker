@@ -28,6 +28,27 @@ const songs = [
     src: require('../assets/audios/billie-eilish-copycat.mp3')
   },
   {
+    title: 'Copycat',
+    artist: 'Billie Eilish',
+    seconds: 195,
+    cover: require('../assets/images/430978023945988b313920ffbe81.jpg'),
+    src: require('../assets/audios/billie-eilish-copycat.mp3')
+  },
+  {
+    title: 'Copycat',
+    artist: 'Billie Eilish',
+    seconds: 195,
+    cover: require('../assets/images/430978023945988b313920ffbe81.jpg'),
+    src: require('../assets/audios/billie-eilish-copycat.mp3')
+  },
+  {
+    title: 'Copycat',
+    artist: 'Billie Eilish',
+    seconds: 195,
+    cover: require('../assets/images/430978023945988b313920ffbe81.jpg'),
+    src: require('../assets/audios/billie-eilish-copycat.mp3')
+  },
+  {
     title: 'Faded',
     artist: 'Alan Walker',
     seconds: 213,
