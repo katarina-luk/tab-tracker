@@ -36,7 +36,7 @@
     <br>
     <v-col class="text-center" >
       <div class="my-2">
-    <v-btn block black  @click='login'>Login</v-btn>
+    <v-btn block black  @click='login'> <v-icon left>mdi-account</v-icon>Login</v-btn>
           <!--/panel-->
       </div>
     </v-col>

@@ -2,8 +2,12 @@
 <template>
   <panel title="Song Metadata">
     <div class="words">
-    <v-layout>
-      <v-flex xs6>
+    <b-continer>
+       <b-row class="text-center">
+          <b-col md="9">
+            <img class="album-image" :src="song.albumImageUrl" /><br>
+            {{song.album}} </b-col>
+             <b-col md="3">
         <div class="song-title">
           {{song.title}}
         </div>
@@ -13,10 +17,13 @@
         <div class="song-genre">
           {{song.genre}}
         </div>
-
+             <!--/b-col-->
+      <!--/b-row-->
+      <!--b-row class="text-center"-->
+ <!--b-col md="3" xs="auto"-->
           <v-btn
+          small
            dark
-           class="cyan mb-2"
            :to="{name: 'song-edit',
             params () {
               return {
@@ -24,15 +31,16 @@
               }
             }
           }">
-              Edit
+               <v-icon left>mdi-pencil</v-icon> Edit
             </v-btn>
 
         <v-btn
           v-if="isUserLoggedIn && !bookmark"
+          large
           dark
           class="cyan"
           @click="setAsBookmark">
-          Add to Favorites
+          Add<br>to<br>Favorites
         </v-btn>
 
         <v-btn
@@ -40,24 +48,22 @@
           dark
           class="cyan"
           @click="unsetAsBookmark">
-          Delete from Favorites
+          Delete<br>from<br>Favorites
         </v-btn>
         <v-spacer></v-spacer>
          <v-btn
+         small
           v-if="song"
           dark
           class="cyan mt-2"
           @click="deleteSong"
           >
-          Delete Song
+           <v-icon left>mdi-delete</v-icon>
+          Delete
           </v-btn>
-      </v-flex>
-
-        <v-flex xs6>
-            <img class="album-image" :src="song.albumImageUrl" /><br>
-            {{song.album}}
-        </v-flex>
-      </v-layout>
+ </b-col>
+      </b-row>
+      </b-continer>
     </div>
     </panel>
 </template>
@@ -189,6 +195,11 @@ export default {
   height: 330px;
   overflow: hidden;
 }
+img {
+    vertical-align: middle;
+    border-style: none;
+    width: 200px;
+}
 .song-title {
   font-size: 30px;
 }
@@ -199,12 +210,13 @@ export default {
   font-size: 18px;
 }
 img> .album-image {
-  max-width: 300px;
+  max-width: 200px;
   min-width: 150px;
   margin: 0 auto;
 }
 .theme--dark.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
     margin: 5px;
+    margin-top: 10px;
 }
 .v-btn:not(.v-btn--round).v-size--default {
     height: 35px;
