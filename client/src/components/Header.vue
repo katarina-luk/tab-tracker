@@ -7,15 +7,15 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item :to="{name:'player'}">PopularMusic</b-nav-item>
+        <b-nav-item :to="{name:'player'}"><v-icon left> mdi-music-note</v-icon>PopularMusic</b-nav-item>
         <!--b-nav-item :to="{name:'songs'}">Home</b-nav-item-->
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">
                <b-navbar-nav right>
-        <b-nav-item  v-if='!$store.state.isUserLoggedIn' :to="{name:'login'}">Login</b-nav-item>
-        <b-nav-item   v-if='!$store.state.isUserLoggedIn' :to="{name:'register'}">Sign Up</b-nav-item>
-        <b-nav-item  v-if='$store.state.isUserLoggedIn' @click="logout"> Log out</b-nav-item>
+        <b-nav-item  v-if='!$store.state.isUserLoggedIn' :to="{name:'login'}"><v-icon left> mdi-login</v-icon> Login</b-nav-item>
+        <b-nav-item   v-if='!$store.state.isUserLoggedIn' :to="{name:'register'}"><v-icon left> mdi-login</v-icon>Sign Up</b-nav-item>
+        <b-nav-item  v-if='$store.state.isUserLoggedIn' @click="logout">  <v-icon left> mdi-logout</v-icon> Log out</b-nav-item>
       </b-navbar-nav>
       </b-navbar-nav>
     </b-collapse>
@@ -63,7 +63,10 @@ export default {
   font-family: 'Lobster', Georgia, Times, serif;
   padding-top: 0px;
 }
-
+.v-icon.v-icon {
+user-select: inherit;
+color: unset;
+}
 /*.header {
   display: flex;
   flex-flow: row wrap;

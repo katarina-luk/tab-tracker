@@ -28,12 +28,14 @@ export default {
 <style lang="scss">
   @import "../../assets/style.scss";
 .l-auth {
+  justify-content: center;
    color: $border-color-input !important;
     background-color: $background-color;
     padding: 15px!important;
     margin:  10px;
     width: 340px;
-    min-width: 300px;
+    min-width: 400px;
+    max-width: 600px;
     animation: bounceIn 1s forwards ease;
 
   }

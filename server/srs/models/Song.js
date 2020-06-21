@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     album: DataTypes.STRING,
     albumImageUrl: DataTypes.STRING,
     youtubeId: DataTypes.STRING,
-    lyrics: DataTypes.TEXT,
-    tab: DataTypes.TEXT
+    lyrics: DataTypes.TEXT//,
+    //tab: DataTypes.TEXT
   })
   Song.associate = function (models) {
   }

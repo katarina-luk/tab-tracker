@@ -36,19 +36,21 @@
 
         <v-btn
           v-if="isUserLoggedIn && !bookmark"
-          large
+          small
           dark
           class="cyan"
-          @click="setAsBookmark">
-          Add<br>to<br>Favorites
+          @click="setAsBookmark"
+        >
+          <v-icon left> mdi-heart-outline</v-icon>Add
         </v-btn>
 
         <v-btn
           v-if="isUserLoggedIn && bookmark"
           dark
+          small
           class="cyan"
           @click="unsetAsBookmark">
-          Delete<br>from<br>Favorites
+         <v-icon left> mdi-heart</v-icon>Remove
         </v-btn>
         <v-spacer></v-spacer>
          <v-btn

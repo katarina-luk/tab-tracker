@@ -4,7 +4,7 @@
   <v-row>
     <v-col sm="10">
       <v-textarea
-      class="l-auth textareaa"
+      class="lyrics textareaa"
          auto-grow
          solo
         readonly
@@ -30,7 +30,7 @@ export default {
 
 <style lang="scss">
   @import "../../assets/style.scss";
-  .l-auth {
+  .lyrics {
    color: $border-color-input !important;
     background-color: $background-color;
     padding: 15px;

@@ -199,6 +199,8 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 0px;
+  margin: 0%;
+  padding: 0%;
   justify-content: center;
   background: url("https://images7.alphacoders.com/717/717773.jpg") no-repeat
   center center fixed;
